@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+     <!-- 简洁Loading页面 -->
+      <div id="app-loading" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      ">
+        <div style="text-align: center;">
+          <!-- 简洁loading动画 -->
+          <div style="
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #1890ff;
+            border-radius: 50%;
+            animation: loading-spin 1s linear infinite;
+            margin: 0 auto 20px;
+          "></div>
+          
+          <!-- 加载文字 -->
+          <div style="
+            color: #1890ff;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+          ">运维监控系统</div>
+          
+          <div style="
+            color: #999;
+            font-size: 14px;
+          ">正在加载...</div>
+        </div>
+      </div>
+      
+      <style>
+        @keyframes loading-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+     
+     <div id="app"></div>
+     
+     <script>
+       // Vue应用挂载后隐藏loading
+       window.addEventListener('load', function() {
+         setTimeout(function() {
+           const loading = document.getElementById('app-loading');
+           if (loading) {
+             loading.style.opacity = '0';
+             loading.style.transition = 'opacity 0.3s ease';
+             setTimeout(function() {
+               loading.remove();
+             }, 300);
+           }
+         }, 500);
+       });
+     </script>
+     
+    <!-- built files will be auto injected -->
+  </body>
+</html>

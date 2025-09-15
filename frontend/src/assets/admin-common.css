@@ -1,0 +1,442 @@
+/* 管理后台通用样式 - 遵循项目蓝白配色规范 */
+
+/* 页面整体布局 */
+.admin-page {
+  min-height: 100vh;
+  overflow: hidden; /* 隐藏所有滚动条 */
+}
+
+/* 页面标题区域 */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  border-left: 4px solid #1890ff; /* 蓝色强调条 */
+}
+
+.header-content {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-title .anticon {
+  color: #1890ff;
+  font-size: 28px;
+}
+
+.page-description {
+  color: #8c8c8c;
+  margin: 0;
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* 主体布局 */
+.admin-layout {
+  display: flex;
+  gap: 24px;
+  height: auto; /* 改为auto以支持动态高度 */
+  min-height: calc(100vh - 160px);
+  overflow: visible; /* 确保内容可见 */
+}
+
+/* 左侧菜单 */
+.admin-menu {
+  width: 240px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  padding: 0;
+  height: fit-content;
+}
+
+.menu-title {
+  padding: 16px 20px;
+  font-weight: 600;
+  color: #262626;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 16px;
+  background: #fafafa;
+  border-radius: 8px 8px 0 0;
+}
+
+.menu-list {
+  padding: 8px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 6px;
+  margin: 2px 8px;
+  position: relative;
+}
+
+.menu-item:hover {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.menu-item.active {
+  background-color: #1890ff;
+  color: white;
+}
+
+.menu-item.active .menu-icon {
+  color: white;
+}
+
+.menu-icon {
+  font-size: 16px;
+  color: #8c8c8c;
+  margin-right: 12px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.menu-item:hover .menu-icon {
+  color: #1890ff;
+}
+
+.menu-text {
+  flex: 1;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.menu-badge {
+  margin-left: auto;
+}
+
+/* 统计信息 */
+.menu-stats {
+  margin-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  padding: 16px 0;
+}
+
+.stats-title {
+  padding: 0 20px 12px;
+  font-weight: 600;
+  color: #262626;
+  font-size: 14px;
+}
+
+.stats-list {
+  padding: 0 20px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.stat-label {
+  color: #8c8c8c;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #1890ff;
+}
+
+/* 右侧内容 */
+.admin-content {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  overflow: visible; /* 确保内容可以正常显示 */
+  min-height: 500px; /* 设置最小高度而不是固定高度 */
+}
+
+/* 内容区域 */
+.content-section {
+  padding: 24px;
+}
+
+/* 批量操作 */
+.batch-actions {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+/* 表单样式 */
+.switch-description {
+  margin-left: 8px;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+.text-gray {
+  color: #8c8c8c;
+}
+
+/* 响应式适配 */
+@media (max-width: 1200px) {
+  .admin-layout {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .admin-menu {
+    width: 240px;
+    margin-bottom: 24px;
+  }
+  
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px;
+  }
+  
+  .menu-item {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #d9d9d9;
+  }
+  
+  .menu-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 0;
+    border-top: none;
+    padding: 16px 20px 0;
+  }
+  
+  .stats-list {
+    display: flex;
+    gap: 16px;
+    padding: 0;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 16px;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .admin-layout {
+    gap: 16px;
+  }
+  
+  .menu-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .menu-item {
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-page {
+    padding: 12px;
+  }
+  
+  .page-header {
+    padding: 16px;
+    border-radius: 6px;
+  }
+  
+  .admin-menu {
+    padding: 12px;
+    border-radius: 6px;
+  }
+  
+  .menu-list {
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    padding: 10px 12px;
+  }
+  
+  .admin-content {
+    border-radius: 6px;
+  }
+}
+
+/* Ant Design 组件样式统一 */
+:deep(.ant-table) {
+  font-size: 14px;
+}
+
+:deep(.ant-table-thead > tr > th) {
+  background-color: #fafafa;
+  border-bottom: 2px solid #f0f0f0;
+  font-weight: 600;
+  color: #262626;
+}
+
+:deep(.ant-table-tbody > tr:hover > td) {
+  background-color: #f8f9fa;
+}
+
+:deep(.ant-table-tbody > tr > td) {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* 按钮优化 */
+:deep(.ant-btn-primary) {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  border-radius: 6px;
+  font-weight: 500;
+  height: 36px;
+  padding: 0 16px;
+  box-shadow: none;
+}
+
+:deep(.ant-btn-primary:hover) {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+:deep(.ant-btn-primary:focus) {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+/* 标签优化 */
+:deep(.ant-tag) {
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* 卡片优化 */
+:deep(.ant-card) {
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  background: transparent;
+  box-shadow: none;
+}
+
+:deep(.ant-card-head) {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fafafa;
+  padding: 16px 24px;
+}
+
+:deep(.ant-card-head-title) {
+  font-weight: 600;
+  color: #262626;
+  font-size: 16px;
+}
+
+:deep(.ant-card-body) {
+  padding: 24px;
+}
+
+/* 模态框优化 */
+:deep(.ant-modal-header) {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fafafa;
+}
+
+:deep(.ant-modal-title) {
+  font-weight: 600;
+  color: #262626;
+}
+
+/* 表单项优化 */
+:deep(.ant-form-item) {
+  margin-bottom: 20px;
+}
+
+:deep(.ant-form-item-label > label) {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+/* 输入框优化 */
+:deep(.ant-input),
+:deep(.ant-input-number),
+:deep(.ant-select-selector),
+:deep(.ant-picker),
+:deep(.ant-textarea) {
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+:deep(.ant-input:focus),
+:deep(.ant-input-focused),
+:deep(.ant-input-number:focus),
+:deep(.ant-select-focused .ant-select-selector),
+:deep(.ant-picker:focus),
+:deep(.ant-textarea:focus) {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+:deep(.ant-input:hover),
+:deep(.ant-input-number:hover),
+:deep(.ant-select:not(.ant-select-disabled):hover .ant-select-selector),
+:deep(.ant-picker:hover),
+:deep(.ant-textarea:hover) {
+  border-color: #40a9ff;
+}
+
+/* 开关样式 */
+:deep(.ant-switch) {
+  background: #d9d9d9;
+}
+
+:deep(.ant-switch-checked) {
+  background: #1890ff;
+}
