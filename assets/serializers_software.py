@@ -65,7 +65,8 @@ class SoftwareAssetListSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'name', 'version', 'software_type', 'vendor',
             'license_type', 'license_count', 'license_used', 'license_utilization_rate',
-            'license_status_display', 'asset_status', 'supplier_name'
+            'license_status_display', 'asset_status', 'supplier_name',
+            "asset_tag", "asset_owner", "supplier", "warranty_status"
         )
 
 

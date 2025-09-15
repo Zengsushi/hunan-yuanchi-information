@@ -19,7 +19,7 @@
             <div class="button-icon">
               <i class="anticon anticon-check-circle"></i>
             </div>
-            <div class="button-content">
+            <div class="button-content">  
               <div class="button-title">在用</div>
               <div class="button-count">{{ activeCount || 0 }}</div>
             </div>
@@ -180,7 +180,7 @@
       </div>
     </div>
 
-    <!-- 硬件设施列表表格 -->
+    <!-- 软件资产列表表格 -->
     <div class="table-wrapper">
       <!-- 表格头部 -->
       <div class="table-header">
@@ -232,17 +232,13 @@
               <span class="asset-name">{{ record.asset_tag  }} </span>
             </div>
           </template>
-
           <!-- 型号 列 -->
           <template v-else-if="column.key === 'model'">
-            <span :title="record.serial_number">{{ record.model || '-' }}</span>
+            <span :title="record.serial_number">{{ record.software_type || '-' }}</span>
           </template>
-
           <!-- 制造商 列 -->
-          <template v-else-if="column.key === 'asset_status'">
-            <a-tag :color="getAssetStatusColor(record.asset_status)" size="small">
-              {{ getAssetStatusText(record.asset_status) }}
-            </a-tag>
+          <template v-else-if="column.key === 'vendor'">
+            <span :title="record.serial_number">{{ record.vendor || '-' }}</span>
           </template>
           <!-- 监控状态列 -->
           <template v-else-if="column.key === 'monitoring_status'">
@@ -257,13 +253,11 @@
             </span>
           </template>
           <!-- 保修状态 列 -->
-          <template v-else-if="column.key === 'warranty_status_display'">
-            <a-tag :color="getWarrantyStatusColor(record.warranty_status_display)" size="small">
-              {{ record.warranty_status_display || '-' }}
+          <template v-else-if="column.key === 'warranty_status'">
+            <a-tag :color="getWarrantyStatusColor(record.warranty_status)" size="small">
+              {{ record.warranty_status || '-' }}
             </a-tag>
           </template>
-
-
           <!-- 监控状态列（兼容旧字段） -->
           <template v-else-if="column.key === 'monitoring_enabled'">
             <a-switch
@@ -276,7 +270,12 @@
               {{ record.monitoring_enabled ? '已监控' : '未监控' }}
             </span>
           </template>
-
+          <template v-else-if="column.key === 'asset_owener'">
+            <span :title="record.serial_number">{{ record.asset_owener || '-' }}</span>
+          </template>
+          <template v-else-if="column.key === 'supplier_contact'">
+            <span :title="record.serial_number">{{ record.supplier_contact || '-' }}</span>
+          </template>
           <!-- 操作列 -->
           <template v-else-if="column.key === 'action'">
             <div class="action-buttons">
@@ -331,6 +330,7 @@
             </div>
           </template>
         </template>
+        
       </a-table>
     </div>
 
@@ -426,7 +426,7 @@ const props = defineProps({
   currentFilter: {
     type: String,
     default: 'total'
-  } , 
+  } ,
 })
 
 console.log(props.dataSource)
@@ -479,54 +479,102 @@ const softwareTypeOptions = ref([
 ])
 
 // 表格列配置
-const columns = [
-  {
-    title: '资产标签',
-    dataIndex: 'asset_tag',
-    key: 'asset_tag',
-    width: 200,
-    fixed: 'left',
-    slots: { customRender: 'asset_tag' }
-  },
-  {
-    title: '型号',
-    dataIndex: 'model',
-    key: 'model',
-    width: 150
-  },
-  {
-    title: '制造商',
-    dataIndex: 'manufacturer',
-    key: 'manufacturer',
-    width: 120,
-    slots: { customRender: 'manufacturer' }
-  },
-  {
-    title: '监控状态',
-    dataIndex: 'monitoring_status',
-    key: 'monitoring_status',
-    width: 100
-  },
-  {
-    title: '资产负责人',
-    dataIndex: 'asset_owener',
-    key: 'asset_owener',
-    width: 80
-  },
-  {
-    title: '供应商负责人',
-    dataIndex: 'supplier_contact',
-    key: 'supplier_contact',
-    width: 80
-  },
-  {
-    title: '操作',
-    key: 'action',
-    width: 200,
-    fixed: 'right',
-    slots: { customRender: 'action' }
-  }
-]
+
+const columns = computed( () => {
+  const inUseColumns = [
+    {
+      title: '资产标签',
+      dataIndex: 'asset_tag',
+      key: 'asset_tag',
+      width: 100,
+      fixed: 'left',
+      slots: { customRender: 'asset_tag' }
+    },
+    {
+      title: '型号',
+      dataIndex: 'model',
+      key: 'model',
+      width: 150
+    },
+    {
+      title: '制造商',
+      dataIndex: 'vendor',
+      key: 'vendor',
+      width: 120,
+      slots: { customRender: 'vendor' }
+    },
+    { 
+      title: '监控状态',
+      dataIndex: 'monitoring_status',
+      key: 'monitoring_status',
+      width: 80
+    },
+    {
+      title: '保修状态',
+      dataIndex: 'warranty_status',
+      key: 'warranty_status',
+      width: 80
+    },
+    {
+      title: '资产负责人',
+      dataIndex: 'asset_owener',
+      key: 'asset_owener',
+      width: 80
+    },
+    {
+      title: '供应商负责人',
+      dataIndex: 'supplier_contact',
+      key: 'supplier_contact',
+      width: 80
+    },
+    {
+        title: '操作',
+        key: 'action',
+        align: 'center',
+        width: 120,
+        slots: { customRender: 'action' }
+    }]
+
+      const scrappedColumns = [
+    {
+      title: '资产标签',
+      dataIndex: 'asset_tag',
+      key: 'asset_tag',
+      width: 120,
+      sorter: true
+    },
+    {
+      title: '型号',
+      dataIndex: 'model',
+      key: 'model',
+      width: 150,
+      ellipsis: true
+    },
+    {
+      title: '制造商',
+      dataIndex: 'manufacturer',
+      key: 'manufacturer',
+      width: 120
+    },
+    {
+      title: '操作',
+      key: 'action',
+      align: 'center',
+      width: 120
+    }
+  ];
+
+  const allColumns = inUseColumns.concat(scrappedColumns)
+
+    switch (props.currentFilter) {
+      case 'active':
+        return inUseColumns;
+      case 'scrapped':
+        return scrappedColumns;
+      default:
+        return allColumns;
+    }
+})
 
 // 行选择配置
 const rowSelection = computed(() => ({
@@ -759,7 +807,7 @@ const getLicenseEndDateColor = (endDate) => {
 .stats-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .stats-button.stats-active {
@@ -1026,7 +1074,8 @@ const getLicenseEndDateColor = (endDate) => {
 }
 
 .asset-name {
-  font-weight: 500;
+  font-weight: 900;
+  background-color: black;
 }
 
 .monitoring-text {

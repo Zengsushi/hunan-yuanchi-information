@@ -40,6 +40,17 @@ class SoftwareAsset(models.Model):
         ('terminated', '已终止'),
     ]
 
+    WARRANTY_TYPE_CHOICES = [
+        ('original', '原厂保修'),
+        ('third_party', '第三方保修'),
+    ]
+
+    WARRANTY_STATUS_CHOICES = [
+        ('original_warranty', '原厂保'),
+        ('third_party_warranty', '第三方保'),
+        ('out_of_warranty', '脱保'),
+    ]
+
     # 基本信息
     name = models.CharField(max_length=200, verbose_name="软件名称")
     software_type = models.CharField(max_length=30, choices=SOFTWARE_TYPE_CHOICES, verbose_name="软件类型", null=True,
@@ -50,6 +61,13 @@ class SoftwareAsset(models.Model):
     asset_owner = models.CharField(max_length=100, verbose_name="资产责任人", blank=True)
     asset_status = models.CharField(max_length=20, choices=ASSET_STATUS_CHOICES, default='in_use',
                                     verbose_name="资产状态")
+    # 保修信息
+    warranty_type = models.CharField(max_length=20, choices=WARRANTY_TYPE_CHOICES, verbose_name="保修类型", null=True)
+    warranty_status = models.CharField(max_length=20, choices=WARRANTY_STATUS_CHOICES, verbose_name="保修类型",
+                                       null=True)
+    warranty_start_date = models.DateField(verbose_name="保修开始日期", null=True)
+    warranty_end_date = models.DateField(verbose_name="保修结束日期", null=True)
+
     # 许可证信息
     license_type = models.CharField(max_length=20, choices=LICENSE_TYPE_CHOICES, verbose_name="许可证类型", null=True,
                                     blank=True)

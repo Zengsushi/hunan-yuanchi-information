@@ -15708,3 +15708,678 @@ django.core.exceptions.ImproperlyConfigured: Field name `status` is not valid fo
 2025-09-15 11:57:02 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
 2025-09-15 11:57:02 [WARNING] django.request: Bad Request: /api/software-assets/
 2025-09-15 11:57:28 [WARNING] django.request: Bad Request: /api/software-assets/
+2025-09-15 14:02:58 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:02:59 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 57, in get_queryset
+    print(queryset)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 377, in __repr__
+    return "<%s %r>" % (self.__class__.__name__, data)
+                                                 ^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+  File "E:\A_project\yuanchi\AIops\assets\software_models.py", line 120, in __str__
+    return f"{self.software_name} v{self.version} - {self.asset_tag}"
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'SoftwareAsset' object has no attribute 'software_name'. Did you mean: 'software_type'?
+2025-09-15 14:03:10 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 57, in get_queryset
+    print(queryset)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 377, in __repr__
+    return "<%s %r>" % (self.__class__.__name__, data)
+                                                 ^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+  File "E:\A_project\yuanchi\AIops\assets\software_models.py", line 120, in __str__
+    return f"{self.software_name} v{self.version} - {self.asset_tag}"
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'SoftwareAsset' object has no attribute 'software_name'. Did you mean: 'software_type'?
+2025-09-15 14:03:20 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:04:20 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:05:57 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:05:58 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 55, in get_queryset
+    queryset = queryset.filter(software_status=software_status)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1426, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1236, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'software_status' into field. Choices are: asset_owner, asset_status, asset_tag, configuration, created_at, dependencies, deployment_servers, deployments, id, installation_path, last_update_date, license_count, license_end_date, license_key, license_start_date, license_status, license_type, license_updates, license_used, minimum_requirements, name, project_source, purchase_date, purchase_price, software_type, supplier, supplier_contact, supplier_id, support_end_date, supported_os, update_frequency, updated_at, usage_description, vendor, version, version_updates
+2025-09-15 14:06:29 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:06:30 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 56, in get_queryset
+    queryset = queryset.filter(software_status=software_status)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1426, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1236, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'software_status' into field. Choices are: asset_owner, asset_status, asset_tag, configuration, created_at, dependencies, deployment_servers, deployments, id, installation_path, last_update_date, license_count, license_end_date, license_key, license_start_date, license_status, license_type, license_updates, license_used, minimum_requirements, name, project_source, purchase_date, purchase_price, software_type, supplier, supplier_contact, supplier_id, support_end_date, supported_os, update_frequency, updated_at, usage_description, vendor, version, version_updates
+2025-09-15 14:07:24 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:09:16 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:09:38 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:09:52 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:09:52 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 60, in get_queryset
+    print(queryset)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 377, in __repr__
+    return "<%s %r>" % (self.__class__.__name__, data)
+                                                 ^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+  File "E:\A_project\yuanchi\AIops\assets\software_models.py", line 120, in __str__
+    return f"{self.software_name} v{self.version} - {self.asset_tag}"
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'SoftwareAsset' object has no attribute 'software_name'. Did you mean: 'software_type'?
+2025-09-15 14:10:17 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:10:18 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\assets\views_software.py", line 60, in get_queryset
+    print(queryset)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 377, in __repr__
+    return "<%s %r>" % (self.__class__.__name__, data)
+                                                 ^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\base.py", line 588, in __repr__
+    return "<%s: %s>" % (self.__class__.__name__, self)
+                                                  ^^^^
+  File "E:\A_project\yuanchi\AIops\assets\software_models.py", line 120, in __str__
+    return f"{self.software_name} v{self.version} - {self.asset_tag}"
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: 'SoftwareAsset' object has no attribute 'software_name'. Did you mean: 'software_type'?
+2025-09-15 14:12:18 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:12:37 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:13:13 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:13:42 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:15:07 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:22:03 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:22:04 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: assets_softwareasset.model
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+           ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: assets_softwareasset.model
+2025-09-15 14:23:48 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:25:52 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:27:32 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:27:51 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:28:27 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:40:11 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:41:47 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:41:47 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:41:47 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:41:47 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:47:12 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:50:55 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:54:40 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:54:40 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `warranty_status` is not valid for model `SoftwareAsset`.
+2025-09-15 14:54:41 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `warranty_status` is not valid for model `SoftwareAsset`.
+2025-09-15 14:54:42 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `warranty_status` is not valid for model `SoftwareAsset`.
+2025-09-15 14:58:50 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:58:50 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+                 ^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `warranty_status` is not valid for model `SoftwareAsset`.
+2025-09-15 14:59:37 [INFO] users.middleware: 会话清理完成: 过期会话 0 个, 旧记录 0 个
+2025-09-15 14:59:37 [ERROR] django.request: Internal Server Error: /api/software-assets/
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: assets_softwareasset.warranty_status
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+           ^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\A_project\yuanchi\AIops\ops_assets_backend\myvenv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: assets_softwareasset.warranty_status

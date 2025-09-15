@@ -37,9 +37,6 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
     ordering = ['-created_at']
 
     def get_serializer_class(self):
-        print(self.action)
-        print("**" * 20)
-        print(self.request.data)
         """根据操作类型返回不同的序列化器"""
         if self.action == 'list':
             return SoftwareAssetListSerializer
@@ -53,10 +50,8 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
         """根据软件状态过滤查询集"""
         queryset = super().get_queryset()
         software_status = self.request.query_params.get('software_status')
-
         if software_status:
             queryset = queryset.filter(software_status=software_status)
-
         return queryset
 
     @action(detail=False, methods=['get'])
@@ -64,7 +59,7 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
         """获取激活状态软件列表"""
         queryset = self.get_queryset().filter(software_status='active')
         queryset = self.filter_queryset(queryset)
-
+        print(queryset)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
