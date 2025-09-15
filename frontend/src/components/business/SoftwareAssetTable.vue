@@ -24,22 +24,24 @@
               <div class="button-count">{{ activeCount || 0 }}</div>
             </div>
           </div>
-        
+          <div class="software-stats-buttons">
           <div 
-            class="stats-button scrapped"
-            :class="{ 'stats-active': currentFilter === 'scrapped' }"
-            @click="handleStatsClick('scrapped')"
+            class="stats-button active"
+            :class="{ 'stats-active': currentFilter === 'test' }"
+            @click="handleStatsClick('test')"
           >
             <div class="button-icon">
-              <i class="anticon anticon-delete"></i>
+              <i class="anticon anticon-check-circle"></i>
             </div>
-            <div class="button-content">
-              <div class="button-title">报废</div>
-              <div class="button-count">{{ scrappedCount || 0 }}</div>
+            <div class="button-content">  
+              <div class="button-title">占位</div>
+              <div class="button-count">{{ activeCount || 0 }}</div>
             </div>
           </div>
-
         </div>
+        </div>
+
+
       </div>
     </div>
     <!-- 查询筛选区域 -->
@@ -183,7 +185,7 @@
     <!-- 软件资产列表表格 -->
     <div class="table-wrapper">
       <!-- 表格头部 -->
-      <div class="table-header">
+      <div class="table-header" v-if="currentFilter === 'active'">
         <div class="table-title">
           <h4>软件列表</h4>
         </div>
@@ -359,7 +361,8 @@ import {
   EyeOutlined,
   EditOutlined,
   DeleteOutlined,
-  HistoryOutlined 
+  HistoryOutlined, 
+  NodeExpandOutlined
 } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
 // Props
@@ -425,12 +428,9 @@ const props = defineProps({
   },
   currentFilter: {
     type: String,
-    default: 'total'
+    default : "active"
   } ,
 })
-
-console.log(props.dataSource)
-
 
 // Emits
 const emit = defineEmits([
@@ -451,13 +451,14 @@ const emit = defineEmits([
   'manufacturer-input',
   'batch-operations',
   'list-management',
-  'stats-filter'
+  'statsFilter'
 ])
 
 // 响应式数据
 const showAdvancedFilter = ref(false)
 const dictionaryLoading = ref(false)
 const selectedRows = ref([])
+const currentFilter = ref(props.currentFilter)
 
 // 资产状态选项
 const assetStatusOptions = ref([
@@ -535,7 +536,7 @@ const columns = computed( () => {
         slots: { customRender: 'action' }
     }]
 
-      const scrappedColumns = [
+    const scrappedColumns = [
     {
       title: '资产标签',
       dataIndex: 'asset_tag',
@@ -564,8 +565,7 @@ const columns = computed( () => {
     }
   ];
 
-  const allColumns = inUseColumns.concat(scrappedColumns)
-
+    const allColumns = []
     switch (props.currentFilter) {
       case 'active':
         return inUseColumns;
@@ -661,8 +661,8 @@ const handleListManagement = () => {
 
 // 统计按钮点击处理
 const handleStatsClick = (filterType) => {
-  emit('stats-filter', filterType)
-}
+  emit('statsFilter', filterType);
+};
 
 const handleTableChange = (pagination, filters, sorter) => {
   emit('table-change', { pagination, filters, sorter })

@@ -28,9 +28,6 @@ class SoftwareAsset(models.Model):
 
     ASSET_STATUS_CHOICES = [
         ('in_use', '在用'),
-        ('deprecated', '已弃用'),
-        ('testing', '测试中'),
-        ('retired', '已退役'),
     ]
 
     LICENSE_STATUS_CHOICES = [
@@ -52,7 +49,7 @@ class SoftwareAsset(models.Model):
     ]
 
     # 基本信息
-    name = models.CharField(max_length=200, verbose_name="软件名称")
+    name = models.CharField(max_length=200, verbose_name="软件名称", null=True)
     software_type = models.CharField(max_length=30, choices=SOFTWARE_TYPE_CHOICES, verbose_name="软件类型", null=True,
                                      default='other')
     vendor = models.CharField(max_length=200, verbose_name="软件厂商", null=True)
@@ -61,6 +58,7 @@ class SoftwareAsset(models.Model):
     asset_owner = models.CharField(max_length=100, verbose_name="资产责任人", blank=True)
     asset_status = models.CharField(max_length=20, choices=ASSET_STATUS_CHOICES, default='in_use',
                                     verbose_name="资产状态")
+
     # 保修信息
     warranty_type = models.CharField(max_length=20, choices=WARRANTY_TYPE_CHOICES, verbose_name="保修类型", null=True)
     warranty_status = models.CharField(max_length=20, choices=WARRANTY_STATUS_CHOICES, verbose_name="保修类型",

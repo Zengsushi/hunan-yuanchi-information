@@ -11,6 +11,15 @@ const softwareAssetApi = {
     });
   },
 
+  // 获取再用状态软件列表
+  getInUseList(params = {}) {
+    return request({
+      url: '/software-assets/in_use/',
+      method: 'get',
+      params
+    });
+  },
+
   // 获取软件资产详情
   getDetail(id) {
     return request({

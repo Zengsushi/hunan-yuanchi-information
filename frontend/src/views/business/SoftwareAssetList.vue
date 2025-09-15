@@ -6,6 +6,7 @@
       :loading="loading"
       :dataSource="tableData"
       :pagination="pagination"
+      :currentFilter="currentFilter"
       :assetStatus="assetStatus"
       :selected-row-keys="selectedRowKeys"
       :totalCount="statistics.total"
@@ -25,7 +26,7 @@
       @batch-delete="handleBatchDelete"
       @batch-export="handleBatchExport"
       @export="handleExport"
-      @stats-filter="handleStatsFilter"
+      @statsFilter="handleStatsFilter"
       @add="showAddDialog"
       @import="showImportDialog"
     />
@@ -209,7 +210,7 @@ export default {
       const active = tableData.value.filter(item => item.asset_status === 'active').length
       const maintenance = tableData.value.filter(item => item.asset_status === 'maintenance').length
       const retired = tableData.value.filter(item => item.asset_status === 'retired').length
-      
+      console.log(total) 
       return {
         total: pagination.total || 0,
         active,
@@ -273,10 +274,6 @@ export default {
         width: 120
       }
     ]
-
-    // 
-
-
     const versionHistoryColumns = [
       {
         title: '更新时间',
@@ -359,10 +356,7 @@ export default {
         const response = await softwareAssetApi.getList(params)
         // 更新传入子组件数据
         tableData.value = response.data.results
-        console.log('tableData:', tableData.value);
         pagination.total = response.data.count
-
-
         message.success('获取数据成功')
       } catch (error) {
         message.error('获取数据失败：' + (error.message || '未知错误'))
@@ -371,6 +365,8 @@ export default {
       }
     }
 
+
+    
     // 新的事件处理方法
     const handleSearch = (searchParams) => {
       Object.assign(searchForm, searchParams)
@@ -396,12 +392,11 @@ export default {
       pagination.page = 1
       fetchData()
     }
-  
-    const currentFilter = ref("rative")
+    // 统计按钮点击事件
+    const currentFilter = ref("") ;
     // 处理统计按钮点击事件
     const handleStatsFilter = (filterType) => {
       currentFilter.value = filterType;    
-      console.log("软件状态切换" , filterType)
       // 根据点击的统计按钮类型进行相应的过滤或操作
       switch (filterType) {
         case 'total':
@@ -410,19 +405,7 @@ export default {
           break;
         case 'active':
           // 显示在用软件
-          assetStatus.value = ['active'];
-          break;
-        case 'available':
-          // 显示可用软件（这里可以根据实际业务逻辑调整）
-          assetStatus.value = ['reserved'];
-          break;
-        case 'scrapped':
-          // 显示报废软件
-          assetStatus.value = ['scrapped'];
-          break;
-        case 'warranty':
-          // 显示保修中的设备（这里可以根据实际业务逻辑调整）
-          // 可以添加特定的过滤逻辑
+          assetStatus.value = "in_use";
           break;
         default:
           break;
@@ -710,10 +693,15 @@ export default {
       return option ? option.label : '未知'
     }
 
+    const test = async () => {
+      const res = await softwareAssetApi.getInUseList
+      console.log(res)
+    }
     // 生命周期
     onMounted(() => {
       fetchDictionaryData()
       fetchData()
+      test() 
     })
 
 

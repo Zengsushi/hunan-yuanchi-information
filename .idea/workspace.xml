@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a386d845-1082-47a6-a5c9-1644c198663b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14bd54b6-a72a-43da-9059-455bfc8f511e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/14bd54b6-a72a-43da-9059-455bfc8f511e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/serializers_software.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/serializers_software.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/software_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/software_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/views_software.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views_software.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/softwareAsset.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/softwareAsset.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/django.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/django.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,29 +39,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.manage.executor": "Debug",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/A_project/yuanchi/AIops_master/ops-master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.manage.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/A_project/yuanchi/AIops_master/ops-master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.manage">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AIops" />
@@ -134,7 +136,7 @@
       <workItem from="1757653444322" duration="532000" />
       <workItem from="1757653992139" duration="8460000" />
       <workItem from="1757724883683" duration="28006000" />
-      <workItem from="1757897448938" duration="16733000" />
+      <workItem from="1757897448938" duration="22033000" />
     </task>
     <servers />
   </component>

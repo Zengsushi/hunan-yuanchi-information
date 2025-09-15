@@ -55,8 +55,9 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
         return queryset
 
     @action(detail=False, methods=['get'])
-    def active(self, request):
-        """获取激活状态软件列表"""
+    def in_use(self, request):
+        """获取再用状态软件列表"""
+        print("in_use 接口调用")
         queryset = self.get_queryset().filter(software_status='active')
         queryset = self.filter_queryset(queryset)
         print(queryset)
