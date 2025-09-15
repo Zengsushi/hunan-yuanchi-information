@@ -10,9 +10,38 @@
           </h3>
         </div>
         <!-- 软件资产统计按钮组 -->
+        <div class="software-stats-buttons">
+          <div 
+            class="stats-button active"
+            :class="{ 'stats-active': currentFilter === 'active' }"
+            @click="handleStatsClick('active')"
+          >
+            <div class="button-icon">
+              <i class="anticon anticon-check-circle"></i>
+            </div>
+            <div class="button-content">
+              <div class="button-title">在用</div>
+              <div class="button-count">{{ activeCount || 0 }}</div>
+            </div>
+          </div>
+        
+          <div 
+            class="stats-button scrapped"
+            :class="{ 'stats-active': currentFilter === 'scrapped' }"
+            @click="handleStatsClick('scrapped')"
+          >
+            <div class="button-icon">
+              <i class="anticon anticon-delete"></i>
+            </div>
+            <div class="button-content">
+              <div class="button-title">报废</div>
+              <div class="button-count">{{ scrappedCount || 0 }}</div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-
     <!-- 查询筛选区域 -->
     <div class="filter-section">
       <div class="filter-header">
@@ -118,18 +147,51 @@
       </div>
     </div>
 
-    <!-- 表格区域 -->
-     
-     <div class="table-wrapper">
+    <!-- 批量操作工具栏 -->
+    <div class="batch-toolbar" v-if="selectedRowKeys.length > 0">
+      <div class="selected-info">
+        <span>已选择 {{ selectedRowKeys.length }} 项</span>
+        <a-button type="link" size="small" @click="clearSelection">清空</a-button>
+      </div>
+      <div class="batch-actions">
+        <a-button 
+          type="primary" 
+          size="small" 
+          @click="batchUpdateMonitoring"
+          :loading="batchMonitoringLoading"
+        >
+          批量监控
+        </a-button>
+        <a-button 
+          size="small" 
+          @click="batchToggleStatus"
+          :loading="batchToggleLoading"
+        >
+          批量{{ allSelectedActive ? '停用' : '启用' }}
+        </a-button>
+        <a-button 
+          type="danger" 
+          size="small" 
+          @click="batchDelete"
+          :loading="batchDeleteLoading"
+        >
+          批量删除
+        </a-button>
+      </div>
+    </div>
+
+    <!-- 硬件设施列表表格 -->
+    <div class="table-wrapper">
+      <!-- 表格头部 -->
       <div class="table-header">
         <div class="table-title">
-          <h4>设备列表</h4>
+          <h4>软件列表</h4>
         </div>
         <div class="table-actions">
           <a-space size="middle">
             <a-button v-if="currentFilter !== 'scrapped'" type="primary" @click="handleAdd">
               <template #icon><PlusOutlined /></template>
-              新增设备
+              新增软件
             </a-button>
             <a-button v-if="currentFilter !== 'scrapped'" @click="handleImport">
               <template #icon><UploadOutlined /></template>
@@ -152,85 +214,126 @@
           </a-space>
         </div>
       </div>
-      <!-- 软件资产表格区域 -->
       <a-table
         :columns="columns"
         :data-source="dataSource"
-        :loading="loading"
+        :row-key="record => record.id"
         :pagination="pagination"
+        :loading="loading"
         :row-selection="rowSelection"
-        :scroll="{ x: 1500 }"
-        row-key="id"
         size="middle"
         @change="handleTableChange"
-        class="asset-table"
       >
-        <!-- 软件名称列 -->
-        <template #software_name="{ record }">
-          <div class="asset-info">
-            <div class="asset-name">{{ record.software_name }}</div>
-            <div class="asset-detail">版本: {{ record.version }}</div>
-          </div>
-        </template>
+        <!-- 使用新的v-slot语法 -->
+        <template #bodyCell="{ column, record }">
+          <!-- 资产标签	列 -->
+          <template v-if="column.key === 'asset_tag'">
+            <div>
+              <span class="asset-name">{{ record.asset_tag  }} </span>
+            </div>
+          </template>
 
-        <!-- 软件类型列 -->
-        <template #software_type="{ record }">
-          <a-tag :color="getSoftwareTypeColor(record.software_type)" size="small">
-            {{ getSoftwareTypeLabel(record.software_type) }}
-          </a-tag>
-        </template>
+          <!-- 型号 列 -->
+          <template v-else-if="column.key === 'model'">
+            <span :title="record.serial_number">{{ record.model || '-' }}</span>
+          </template>
 
-        <!-- 许可证状态列 -->
-        <template #license_status="{ record }">
-          <a-tag :color="getLicenseStatusColor(record.license_status)" size="small">
-            {{ getLicenseStatusLabel(record.license_status) }}
-          </a-tag>
-        </template>
+          <!-- 制造商 列 -->
+          <template v-else-if="column.key === 'asset_status'">
+            <a-tag :color="getAssetStatusColor(record.asset_status)" size="small">
+              {{ getAssetStatusText(record.asset_status) }}
+            </a-tag>
+          </template>
+          <!-- 监控状态列 -->
+          <template v-else-if="column.key === 'monitoring_status'">
+            <a-switch
+              :checked="record.monitoring_status"
+              :loading="record.toggleLoading"
+              @change="(checked) => toggleMonitoring(record, checked)"
+              size="small"
+            />
+            <span class="monitoring-text">
+              {{ record.monitoring_status ? '已监控' : '未监控' }}
+            </span>
+          </template>
+          <!-- 保修状态 列 -->
+          <template v-else-if="column.key === 'warranty_status_display'">
+            <a-tag :color="getWarrantyStatusColor(record.warranty_status_display)" size="small">
+              {{ record.warranty_status_display || '-' }}
+            </a-tag>
+          </template>
 
 
-        <!-- 操作列 -->
-        <template #action="{ record }">
-          <a-space size="small">
-            <a-tooltip title="查看详情">
-              <a-button type="text" size="small" @click="handleView(record)" class="action-btn">
-                <template #icon><EyeOutlined /></template>
-              </a-button>
-            </a-tooltip>
-            <a-tooltip title="编辑">
-              <a-button type="text" size="small" @click="handleEdit(record)" class="action-btn">
-                <template #icon><EditOutlined /></template>
-              </a-button>
-            </a-tooltip>
-            <a-tooltip title="删除">
-              <a-button type="text" size="small" danger @click="handleDelete(record)" class="action-btn">
-                <template #icon><DeleteOutlined /></template>
-              </a-button>
-            </a-tooltip>
-          </a-space>
+          <!-- 监控状态列（兼容旧字段） -->
+          <template v-else-if="column.key === 'monitoring_enabled'">
+            <a-switch
+              :checked="record.monitoring_enabled"
+              :loading="record.toggleLoading"
+              @change="(checked) => toggleMonitoring(record, checked)"
+              size="small"
+            />
+            <span class="monitoring-text">
+              {{ record.monitoring_enabled ? '已监控' : '未监控' }}
+            </span>
+          </template>
+
+          <!-- 操作列 -->
+          <template v-else-if="column.key === 'action'">
+            <div class="action-buttons">
+              <a-tooltip title="查看详情">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="viewDetails(record)"
+                  class="action-btn"
+                >
+                  <template #icon><EyeOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-tooltip title="编辑">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="editAsset(record)"
+                  class="action-btn"
+                >
+                  <template #icon><EditOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-tooltip title="历史记录">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="viewHistory(record)"
+                  class="action-btn"
+                >
+                  <template #icon><HistoryOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-popconfirm
+                title="确定要删除这个设备吗？"
+                @confirm="deleteAsset(record)"
+                ok-text="确定"
+                cancel-text="取消"
+              >
+                <a-tooltip title="删除">
+                  <a-button 
+                    type="text" 
+                    size="small" 
+                    danger
+                    :loading="record.deleteLoading"
+                    class="action-btn danger"
+                  >
+                    <template #icon><DeleteOutlined /></template>
+                  </a-button>
+                </a-tooltip>
+              </a-popconfirm>
+            </div>
+          </template>
         </template>
       </a-table>
     </div>
 
-    <!-- 批量操作 -->
-    <div class="batch-actions" v-if="selectedRowKeys.length > 0">
-      <a-alert
-        :message="`已选择 ${selectedRowKeys.length} 项`"
-        type="info"
-        show-icon
-        :closable="false"
-      >
-        <template #action>
-          <a-space>
-            <a-button size="small" danger @click="$emit('batch-delete')" :loading="batchDeleting">
-              批量删除
-            </a-button>
-            <a-button size="small" @click="$emit('clear-selection')">
-              清除选择
-            </a-button>
-          </a-space>
-        </template>
-      </a-alert>
-    </div>
   </div>
 </template>
 
@@ -324,12 +427,9 @@ const props = defineProps({
     type: String,
     default: 'total'
   } , 
-  data : {
-    type: Array,
-    default: () => []
-  }
 })
 
+console.log(props.dataSource)
 
 
 // Emits
@@ -381,62 +481,43 @@ const softwareTypeOptions = ref([
 // 表格列配置
 const columns = [
   {
-    title: '软件名称',
-    dataIndex: 'software_name',
-    key: 'software_name',
+    title: '资产标签',
+    dataIndex: 'asset_tag',
+    key: 'asset_tag',
     width: 200,
     fixed: 'left',
-    slots: { customRender: 'software_name' }
+    slots: { customRender: 'asset_tag' }
   },
   {
-    title: '供应商',
-    dataIndex: 'vendor',
-    key: 'vendor',
+    title: '型号',
+    dataIndex: 'model',
+    key: 'model',
     width: 150
   },
   {
-    title: '软件类型',
-    dataIndex: 'software_type',
-    key: 'software_type',
+    title: '制造商',
+    dataIndex: 'manufacturer',
+    key: 'manufacturer',
     width: 120,
-    slots: { customRender: 'software_type' }
+    slots: { customRender: 'manufacturer' }
   },
   {
-    title: '许可证类型',
-    dataIndex: 'license_type',
-    key: 'license_type',
-    width: 120
-  },
-  {
-    title: '许可证数量',
-    dataIndex: 'license_count',
-    key: 'license_count',
+    title: '监控状态',
+    dataIndex: 'monitoring_status',
+    key: 'monitoring_status',
     width: 100
   },
   {
-    title: '已使用',
-    dataIndex: 'used_count',
-    key: 'used_count',
+    title: '资产负责人',
+    dataIndex: 'asset_owener',
+    key: 'asset_owener',
     width: 80
   },
   {
-    title: '可用',
-    dataIndex: 'available_count',
-    key: 'available_count',
+    title: '供应商负责人',
+    dataIndex: 'supplier_contact',
+    key: 'supplier_contact',
     width: 80
-  },
-  {
-    title: '采购日期',
-    dataIndex: 'purchase_date',
-    key: 'purchase_date',
-    width: 120
-  },
-  {
-    title: '许可证状态',
-    dataIndex: 'license_status',
-    key: 'license_status',
-    width: 120,
-    slots: { customRender: 'license_status' }
   },
   {
     title: '操作',
@@ -587,7 +668,8 @@ const getLicenseEndDateColor = (endDate) => {
 </script>
 
 <style scoped>
-.software-asset-table-container {
+/* 简洁容器样式 */
+.hardware-asset-table-container {
   background: #ffffff;
   border-radius: 8px;
   overflow: hidden;
@@ -597,8 +679,15 @@ const getLicenseEndDateColor = (endDate) => {
   position: relative;
 }
 
-/* 软件资产统计容器样式 */
-.software-stats-container {
+.table-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* 硬件设备统计容器样式 */
+.hardware-stats-container {
   background: #fff;
   overflow: hidden;
 }
@@ -606,14 +695,14 @@ const getLicenseEndDateColor = (endDate) => {
 /* 统计头部样式 */
 .stats-header {
   display: flex;
-  height: 80px;
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
   border-bottom: 1px solid #f0f0f0;
+  color: white;
 }
 
-.page-title h3 {
+.page-title h3{
   margin: 0;
   font-size: 20px;
   font-weight: 600;
@@ -625,16 +714,30 @@ const getLicenseEndDateColor = (endDate) => {
 
 .title-icon {
   font-size: 22px;
-  color: #1e40af;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* 软件资产统计按钮组样式 */
+/* 硬件设备统计按钮组样式 */
+.stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 24px;
+  gap: 24px;
+}
+
+
 .software-stats-buttons {
   display: flex;
   gap: 16px;
   flex: 1;
   justify-content: center;
-  max-width: 600px;
+  max-width: 500px;
+}
+
+.table-actions {
+  flex-shrink: 0;
 }
 
 .stats-button {
@@ -648,8 +751,8 @@ const getLicenseEndDateColor = (endDate) => {
   transition: all 0.3s ease;
   cursor: pointer;
   border: 2px solid transparent;
-  min-width: 140px;
-  max-width: 180px;
+  min-width: 160px;
+  max-width: 200px;
   height: 56px;
 }
 
@@ -695,6 +798,9 @@ const getLicenseEndDateColor = (endDate) => {
   margin-bottom: 2px;
 }
 
+
+
+
 /* 不同状态的颜色主题 */
 .stats-button.total .button-icon {
   background: linear-gradient(135deg, #667eea, #764ba2);
@@ -714,24 +820,34 @@ const getLicenseEndDateColor = (endDate) => {
   color: #1890ff;
 }
 
-.stats-button.maintenance .button-icon {
+.stats-button.available .button-icon {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: white;
+}
+
+.stats-button.available .button-count {
+  color: #52c41a;
+}
+
+.stats-button.warranty .button-icon {
   background: linear-gradient(135deg, #fa709a, #fee140);
   color: white;
 }
 
-.stats-button.maintenance .button-count {
+.stats-button.warranty .button-count {
   color: #fa8c16;
 }
 
-.stats-button.retired .button-icon {
+.stats-button.scrapped .button-icon {
   background: linear-gradient(135deg, #ff4d4f, #ff7875);
   color: white;
 }
 
-.stats-button.retired .button-count {
+.stats-button.scrapped .button-count {
   color: #ff4d4f;
 }
 
+/* 表格头部样式 */
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -748,6 +864,14 @@ const getLicenseEndDateColor = (endDate) => {
   color: #262626;
 }
 
+/* 简洁操作按钮区域 */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* 响应式设计 */
 @media (max-width: 1200px) {
   .stats-header {
@@ -756,14 +880,37 @@ const getLicenseEndDateColor = (endDate) => {
     gap: 16px;
   }
   
-  .software-stats-buttons {
+  .hardware-stats-buttons {
     max-width: none;
     justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .software-stats-buttons {
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .table-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .stats-inline {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .stat-item {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .hardware-stats-buttons {
     flex-direction: column;
     gap: 12px;
   }
@@ -772,24 +919,39 @@ const getLicenseEndDateColor = (endDate) => {
     min-width: auto;
     max-width: none;
   }
-  
-  .table-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
 }
 
-.table-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
+/* 简洁搜索过滤区域 */
 .filter-section {
-  background: #f8f9fa;
+  background: #ffffff;
   border-bottom: 1px solid #e9ecef;
+}
+
+.expand-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.advanced-filter {
+  margin-top: 12px;
+  animation: fadeIn 0.3s ease;
+  margin-top: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .filter-header {
@@ -802,8 +964,8 @@ const getLicenseEndDateColor = (endDate) => {
 }
 
 .filter-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
   color: #495057;
   margin: 0;
   display: flex;
@@ -820,16 +982,6 @@ const getLicenseEndDateColor = (endDate) => {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.expand-btn {
-  padding: 4px 8px;
-  font-size: 12px;
-}
-
-.rotate-180 {
-  transform: rotate(180deg);
-  transition: transform 0.3s;
 }
 
 .filter-content {
@@ -850,115 +1002,176 @@ const getLicenseEndDateColor = (endDate) => {
   font-size: 13px;
 }
 
-.advanced-filter {
-  margin-top: 8px;
-  margin-top: 12px;
-  animation: fadeIn 0.3s ease;
-}
-
-.table-section {
-  flex: 1;
+/* 简洁批量操作区域 */
+.batch-toolbar {
   display: flex;
-  flex-direction: column;
-  min-height: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-.table-wrapper {
-  flex: 1;
+.selected-info {
   display: flex;
-  flex-direction: column;
-  min-height: 0;
+  align-items: center;
+  gap: 8px;
+  color: #1890ff;
+  font-weight: 500;
 }
 
-.asset-info {
+.batch-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.asset-name {
+  font-weight: 500;
+}
+
+.monitoring-text {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.no-data {
+  color: #bfbfbf;
+}
+
+.time-cell {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.asset-name {
-  font-weight: 500;
+.time-text {
+  font-size: 13px;
   color: #262626;
-  font-size: 14px;
+  font-weight: 500;
 }
 
-.asset-detail {
-  font-size: 12px;
+.time-relative {
+  font-size: 11px;
   color: #8c8c8c;
+  font-style: italic;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 4px;
 }
 
 .action-btn {
-  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-  background: #f0f0f0;
+  background-color: #f5f5f5;
+  transform: scale(1.1);
 }
 
-.batch-actions {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+.action-btn.danger:hover {
+  background-color: #fff2f0;
+  color: #ff4d4f;
 }
 
-.batch-actions .ant-alert {
-  margin: 0;
-  border-radius: 6px;
+.action-btn .anticon {
+  font-size: 14px;
 }
 
-:deep(.asset-table) {
-  .ant-table-thead > tr > th {
-    background: #fafafa;
-    font-weight: 600;
-    font-size: 12px;
-    color: #262626;
-    border-bottom: 2px solid #e9ecef;
-  }
-  
-  .ant-table-tbody > tr {
-    transition: all 0.2s;
-  }
-  
-  .ant-table-tbody > tr:hover > td {
-    background: #f8f9fa;
-  }
-  
-  .ant-table-row-selected > td {
-    background: #e6f7ff;
-  }
-  
-  .ant-table-row-selected:hover > td {
-    background: #bae7ff;
-  }
-}
-
-:deep(.ant-btn) {
-  border-radius: 6px;
-  font-weight: 500;
-}
-
+/* 简洁输入框样式 */
 :deep(.ant-input) {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+:deep(.ant-input:focus) {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+:deep(.ant-select) {
   border-radius: 6px;
 }
 
 :deep(.ant-select .ant-select-selector) {
-  border-radius: 6px;
+  border-radius: 6px !important;
+  border: 1px solid #d1d5db !important;
+  background: #ffffff !important;
+}
+
+:deep(.ant-select:not(.ant-select-disabled):hover .ant-select-selector) {
+  border-color: #2563eb !important;
+}
+
+/* 表格样式优化 */
+:deep(.ant-table) {
+  font-size: 13px;
+}
+
+:deep(.ant-table-container) {
+  display: flex;
+  flex-direction: column;
+}
+
+:deep(.ant-table-content) {
+  overflow: auto;
+}
+
+:deep(.ant-table-body) {
+  overflow-y: visible;
+}
+
+:deep(.ant-table-thead > tr > th) {
+  background: #ffffff;
+  font-weight: 600;
+  color: #262626;
+}
+
+:deep(.ant-table-tbody > tr:hover > td) {
+  background: #ffffff;
+}
+
+:deep(.ant-table-row-selected) {
+  background: #e6f7ff;
+}
+
+:deep(.ant-table-row-selected:hover > td) {
+  background: #bae7ff;
+}
+
+:deep(.ant-pagination) {
+  margin: 12px 16px;
+  text-align: right;
+  flex-shrink: 0;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+}
+
+:deep(.ant-switch) {
+  min-width: 28px;
 }
 
 :deep(.ant-tag) {
+  margin: 0;
   border-radius: 4px;
-  font-weight: 500;
 }
 
-:deep(.ant-divider) {
-  margin: 12px 0;
-  font-size: 12px;
-  color: #8c8c8c;
+/* 只有操作列居中对齐 */
+:deep(.ant-table-tbody > tr > td:nth-child(7)) {
+  text-align: center !important;
+}
+
+:deep(.ant-table-thead > tr > th:nth-child(7)) {
+  text-align: center !important;
 }
 </style>

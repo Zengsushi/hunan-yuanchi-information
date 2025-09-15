@@ -1,0 +1,47 @@
+[
+  {
+    "category": "user_category",
+    "key": "admin",
+    "label": "管理员",
+    "description": "系统管理员，拥有系统的完整管理权限",
+    "priority": 100,
+    "status": "active",
+    "config": "{\"icon\": \"CrownOutlined\", \"color\": \"gold\", \"permissions\": [\"all\"]}"
+  },
+  {
+    "category": "user_category",
+    "key": "operator",
+    "label": "操作员",
+    "description": "系统操作员，可以进行日常运维操作",
+    "priority": 90,
+    "status": "active",
+    "config": "{\"icon\": \"SafetyOutlined\", \"color\": \"blue\", \"permissions\": [\"read\", \"write\", \"execute\"]}"
+  },
+  {
+    "category": "user_category",
+    "key": "viewer",
+    "label": "观察者",
+    "description": "只读用户，仅能查看系统信息",
+    "priority": 80,
+    "status": "active",
+    "config": "{\"icon\": \"EyeOutlined\", \"color\": \"green\", \"permissions\": [\"read\"]}"
+  },
+  {
+    "category": "user_category",
+    "key": "guest",
+    "label": "访客",
+    "description": "临时访客，有限的系统访问权限",
+    "priority": 70,
+    "status": "active",
+    "config": "{\"icon\": \"UserOutlined\", \"color\": \"default\", \"permissions\": [\"limited_read\"]}"
+  },
+  {
+    "category": "user_category",
+    "key": "developer",
+    "label": "开发者",
+    "description": "系统开发者，拥有开发和调试权限",
+    "priority": 85,
+    "status": "active",
+    "config": "{\"icon\": \"CodeOutlined\", \"color\": \"purple\", \"permissions\": [\"read\", \"write\", \"debug\"]}"
+  }
+]

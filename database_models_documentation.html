@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运维资产管理系统 - 数据库模型文档</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        .table-info {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .field-table th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .field-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        .field-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .foreign-key {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .primary-key {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .required {
+            color: #e74c3c;
+        }
+        .optional {
+            color: #27ae60;
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 5px 0;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #3498db;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>运维资产管理系统 - 数据库模型文档</h1>
+        
+        <div class="toc">
+            <h3>目录</h3>
+            <ul>
+                <li><a href="#users">1. 用户管理模块 (users)</a></li>
+                <li><a href="#organization">2. 组织架构模块 (organization)</a></li>
+                <li><a href="#menu_management">3. 菜单管理模块 (menu_management)</a></li>
+                <li><a href="#ip_management">4. IP管理模块 (ip_management)</a></li>
+                <li><a href="#business">5. 业务管理模块 (business)</a></li>
+                <li><a href="#assets">6. 资产管理模块 (assets)</a></li>
+                <li><a href="#admin_management">7. 系统管理模块 (admin_management)</a></li>
+            </ul>
+        </div>
+
+        <section id="users">
+            <h2>1. 用户管理模块 (users)</h2>
+            
+            <h3>1.1 User (用户表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> custom_user<br>
+                <strong>描述:</strong> 扩展的用户模型，继承Django的AbstractUser，用于存储用户基本信息
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>用户ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>username</td>
+                        <td>CharField</td>
+                        <td class="required">唯一</td>
+                        <td>用户名</td>
+                        <td>继承自AbstractUser</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>EmailField</td>
+                        <td class="required">唯一</td>
+                        <td>邮箱地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>phone</td>
+                        <td>CharField(11)</td>
+                        <td class="optional">可空</td>
+                        <td>手机号码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>avatar</td>
+                        <td>URLField</td>
+                        <td class="optional">可空</td>
+                        <td>头像URL</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td>last_login_ip</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="optional">可空</td>
+                        <td>最后登录IP</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>1.2 UserProfile (用户资料表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_profile<br>
+                <strong>描述:</strong> 用户资料扩展表，存储用户的详细信息和角色权限
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>资料ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>OneToOneField</td>
+                        <td class="required">外键</td>
+                        <td>关联用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>real_name</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>真实姓名</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>department</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>部门</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>role</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>角色</td>
+                        <td>admin/operator/viewer</td>
+                    </tr>
+                    <tr>
+                        <td>is_active</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否激活</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>login_count</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>登录次数</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>last_activity</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>最后活动时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.3 Role (角色表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_role<br>
+                <strong>描述:</strong> 角色管理表，定义系统中的各种角色及其权限
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>角色ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(50)</td>
+                        <td class="required">唯一</td>
+                        <td>角色名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>CharField(50)</td>
+                        <td class="required">唯一</td>
+                        <td>角色编码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>permissions</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>权限列表</td>
+                        <td>JSON格式存储权限编码</td>
+                    </tr>
+                    <tr>
+                        <td>is_active</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否启用</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.4 Permission (权限表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_permission<br>
+                <strong>描述:</strong> 权限管理表，定义系统中的各种权限，支持树形结构
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>权限ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>权限名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>CharField(100)</td>
+                        <td class="required">唯一</td>
+                        <td>权限编码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">parent</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>父权限</td>
+                        <td>→ Permission.id (自关联)</td>
+                    </tr>
+                    <tr>
+                        <td>icon</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>图标</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>URL路径</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>order</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>排序</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_active</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否启用</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.5 LoginLog (登录日志表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_login_log<br>
+                <strong>描述:</strong> 用户登录日志表，记录用户的登录和登出信息
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>日志ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>ForeignKey</td>
+                        <td class="required">外键</td>
+                        <td>关联用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>ip_address</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="required">必填</td>
+                        <td>IP地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>user_agent</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>用户代理</td>
+                        <td>浏览器信息</td>
+                    </tr>
+                    <tr>
+                        <td>login_time</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>登录时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>logout_time</td>
+                        <td>DateTimeField</td>
+                        <td class="optional">可空</td>
+                        <td>登出时间</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_success</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否成功</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>failure_reason</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>失败原因</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.6 UserSession (用户会话表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_session<br>
+                <strong>描述:</strong> 用户会话管理表，用于管理用户的在线状态和WebSocket连接
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>会话ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>ForeignKey</td>
+                        <td class="required">外键</td>
+                        <td>关联用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>session_key</td>
+                        <td>CharField(40)</td>
+                        <td class="required">唯一</td>
+                        <td>会话密钥</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>ip_address</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="required">必填</td>
+                        <td>IP地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>user_agent</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>用户代理</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>device_info</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>设备信息</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>login_time</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>登录时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>last_activity</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>最后活动时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td>is_active</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否活跃</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>logout_reason</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>登出原因</td>
+                        <td>normal/kicked/timeout等</td>
+                    </tr>
+                    <tr>
+                        <td>websocket_channels</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>WebSocket通道</td>
+                        <td>存储通道名称列表</td>
+                    </tr>
+                    <tr>
+                        <td>has_websocket</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>是否有WebSocket连接</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="organization">
+            <h2>2. 组织架构模块 (organization)</h2>
+            
+            <h3>2.1 Department (部门表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> organization_department<br>
+                <strong>描述:</strong> 部门管理表，支持树形结构的部门层级关系
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>部门ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>部门名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>CharField(50)</td>
+                        <td class="required">唯一</td>
+                        <td>部门编码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">parent</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>上级部门</td>
+                        <td>→ Department.id (自关联)</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">manager</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>部门负责人</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>部门描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>level</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认1</td>
+                        <td>部门层级</td>
+                        <td>自动计算</td>
+                    </tr>
+                    <tr>
+                        <td>sort_order</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>排序</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>状态</td>
+                        <td>active/inactive</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.2 Position (职位表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> organization_position<br>
+                <strong>描述:</strong> 职位管理表，定义各部门的职位信息和薪资范围
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>职位ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>职位名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>CharField(50)</td>
+                        <td class="required">唯一</td>
+                        <td>职位编码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">department</td>
+                        <td>ForeignKey</td>
+                        <td class="required">外键</td>
+                        <td>所属部门</td>
+                        <td>→ Department.id</td>
+                    </tr>
+                    <tr>
+                        <td>level</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>职位级别</td>
+                        <td>junior/intermediate/senior等</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>职位描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>responsibilities</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>岗位职责</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>requirements</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>任职要求</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>salary_range_min</td>
+                        <td>DecimalField(10,2)</td>
+                        <td class="optional">可空</td>
+                        <td>薪资范围最低</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>salary_range_max</td>
+                        <td>DecimalField(10,2)</td>
+                        <td class="optional">可空</td>
+                        <td>薪资范围最高</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>状态</td>
+                        <td>active/inactive</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 Employee (员工表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> organization_employee<br>
+                <strong>描述:</strong> 员工信息表，存储员工的详细信息和组织关系
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>员工ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>OneToOneField</td>
+                        <td class="optional">可空</td>
+                        <td>关联用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(100)</td>
+                        <td class="required">默认值</td>
+                        <td>员工姓名</td>
+                        <td>默认"未命名员工"</td>
+                    </tr>
+                    <tr>
+                        <td>employee_id</td>
+                        <td>CharField(50)</td>
+                        <td class="required">唯一</td>
+                        <td>工号</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">department</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>所属部门</td>
+                        <td>→ Department.id</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">position</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>职位</td>
+                        <td>→ Position.id</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">direct_supervisor</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>直接上级</td>
+                        <td>→ Employee.id (自关联)</td>
+                    </tr>
+                    <tr>
+                        <td>phone</td>
+                        <td>CharField(20)</td>
+                        <td class="optional">可空</td>
+                        <td>联系电话</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>mobile</td>
+                        <td>CharField(20)</td>
+                        <td class="optional">可空</td>
+                        <td>手机号码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>EmailField</td>
+                        <td class="optional">可空</td>
+                        <td>邮箱地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>office_location</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>办公地点</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>hire_date</td>
+                        <td>DateField</td>
+                        <td class="optional">可空</td>
+                        <td>入职日期</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>probation_end_date</td>
+                        <td>DateField</td>
+                        <td class="optional">可空</td>
+                        <td>试用期结束日期</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>contract_type</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>合同类型</td>
+                        <td>full_time/part_time/contract/intern</td>
+                    </tr>
+                    <tr>
+                        <td>employment_status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>就业状态</td>
+                        <td>active/probation/leave/resigned/terminated</td>
+                    </tr>
+                    <tr>
+                        <td>emergency_contact_name</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>紧急联系人</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>emergency_contact_phone</td>
+                        <td>CharField(20)</td>
+                        <td class="optional">可空</td>
+                        <td>紧急联系电话</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>salary</td>
+                        <td>DecimalField(10,2)</td>
+                        <td class="optional">可空</td>
+                        <td>薪资</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>sort_order</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>排序</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>notes</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>备注</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="menu_management">
+            <h2>3. 菜单管理模块 (menu_management)</h2>
+            
+            <h3>3.1 Menu (菜单表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> menu_management<br>
+                <strong>描述:</strong> 系统菜单管理表，支持树形结构和权限控制
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>菜单ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>菜单名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>显示标题</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>path</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>路由路径</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>component</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>组件路径</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>icon</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>图标</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>menu_type</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>菜单类型</td>
+                        <td>menu/button/link</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">parent</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>父菜单</td>
+                        <td>→ Menu.id (自关联)</td>
+                    </tr>
+                    <tr>
+                        <td>order_num</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>排序号</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_hidden</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>是否隐藏</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_cache</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否缓存</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_affix</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>是否固定标签</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>target</td>
+                        <td>CharField(10)</td>
+                        <td class="required">选择</td>
+                        <td>打开方式</td>
+                        <td>_self/_blank</td>
+                    </tr>
+                    <tr>
+                        <td>redirect</td>
+                        <td>CharField(200)</td>
+                        <td class="optional">可空</td>
+                        <td>重定向路径</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>permission_code</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>权限编码</td>
+                        <td>关联权限控制</td>
+                    </tr>
+                    <tr>
+                        <td>is_active</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否启用</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.2 UserMenuConfig (用户菜单配置表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> user_menu_config<br>
+                <strong>描述:</strong> 用户个性化菜单配置表，存储用户的菜单偏好设置
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>配置ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>OneToOneField</td>
+                        <td class="required">外键</td>
+                        <td>用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>collapsed_menus</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>折叠的菜单</td>
+                        <td>存储菜单ID列表</td>
+                    </tr>
+                    <tr>
+                        <td>pinned_menus</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>固定的菜单</td>
+                        <td>存储菜单ID列表</td>
+                    </tr>
+                    <tr>
+                        <td>custom_order</td>
+                        <td>JSONField</td>
+                        <td class="required">默认{}</td>
+                        <td>自定义排序</td>
+                        <td>存储菜单排序配置</td>
+                    </tr>
+                    <tr>
+                        <td>theme_config</td>
+                        <td>JSONField</td>
+                        <td class="required">默认{}</td>
+                        <td>主题配置</td>
+                        <td>存储菜单主题配置</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="ip_management">
+            <h2>4. IP管理模块 (ip_management)</h2>
+            
+            <h3>4.1 IPRecord (IP记录表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> ip_records<br>
+                <strong>描述:</strong> IP地址管理表，记录网络中的IP地址使用情况和设备信息
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>记录ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td>ip_address</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="required">唯一</td>
+                        <td>IP地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>hostname</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>主机名</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>IP状态</td>
+                        <td>active/available/reserved/conflict</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>IP类型</td>
+                        <td>static/dynamic/gateway/dns</td>
+                    </tr>
+                    <tr>
+                        <td>mac_address</td>
+                        <td>CharField(17)</td>
+                        <td class="optional">可空</td>
+                        <td>MAC地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>device</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>关联设备</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>subnet</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>所属网段</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>备注</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_auto_discovered</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>自动发现</td>
+                        <td>是否由Zabbix自动发现</td>
+                    </tr>
+                    <tr>
+                        <td>zabbix_drule_id</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>Zabbix发现规则ID</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>ping_status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>Ping状态</td>
+                        <td>online/offline</td>
+                    </tr>
+                    <tr>
+                        <td>monitoring_enabled</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>启用监控</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>last_seen</td>
+                        <td>DateTimeField</td>
+                        <td class="optional">可空</td>
+                        <td>最后在线时间</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">created_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>创建者</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4.2 ScanTask (扫描任务表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> scan_tasks<br>
+                <strong>描述:</strong> 网络扫描任务表，用于管理IP扫描和设备发现任务
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>任务ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td>task_name</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>任务名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>ip_ranges</td>
+                        <td>JSONField</td>
+                        <td class="required">必填</td>
+                        <td>IP范围列表</td>
+                        <td>存储IP范围数组</td>
+                    </tr>
+                    <tr>
+                        <td>check_type</td>
+                        <td>IntegerField</td>
+                        <td class="required">选择</td>
+                        <td>检查类型</td>
+                        <td>0-15对应不同协议</td>
+                    </tr>
+                    <tr>
+                        <td>ports</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>端口范围</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>key</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>检查键值/SNMP OID</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>snmp_community</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>SNMP社区</td>
+                        <td>默认public</td>
+                    </tr>
+                    <tr>
+                        <td>snmpv3_config</td>
+                        <td>JSONField</td>
+                        <td class="optional">可空</td>
+                        <td>SNMPv3配置</td>
+                        <td>存储SNMPv3配置对象</td>
+                    </tr>
+                    <tr>
+                        <td>unique_check</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>唯一性检查</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>host_source</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认1</td>
+                        <td>主机名称来源</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>name_source</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>可见名称来源</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>任务状态</td>
+                        <td>pending/running/completed/failed/cancelled</td>
+                    </tr>
+                    <tr>
+                        <td>progress</td>
+                        <td>IntegerField</td>
+                        <td class="required">默认0</td>
+                        <td>进度百分比</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>result_data</td>
+                        <td>JSONField</td>
+                        <td class="optional">可空</td>
+                        <td>扫描结果数据</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>error_message</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>错误信息</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>started_at</td>
+                        <td>DateTimeField</td>
+                        <td class="optional">可空</td>
+                        <td>开始时间</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>completed_at</td>
+                        <td>DateTimeField</td>
+                        <td class="optional">可空</td>
+                        <td>完成时间</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">created_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>创建者</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="business">
+            <h2>5. 业务管理模块 (business)</h2>
+            
+            <h3>5.1 BusinessSystem (业务系统表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> business_systems<br>
+                <strong>描述:</strong> 业务系统管理表，记录企业内部各种业务系统的信息
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>系统ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(255)</td>
+                        <td class="required">必填</td>
+                        <td>系统名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>CharField(100)</td>
+                        <td class="required">唯一</td>
+                        <td>系统编码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>系统描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>category</td>
+                        <td>CharField(50)</td>
+                        <td class="required">选择</td>
+                        <td>系统分类</td>
+                        <td>core/support/external/legacy</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>系统状态</td>
+                        <td>active/inactive/maintenance/deprecated</td>
+                    </tr>
+                    <tr>
+                        <td>version</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>版本号</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>vendor</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>供应商</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">owner</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>系统负责人</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">department</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>所属部门</td>
+                        <td>→ Department.id</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>URLField</td>
+                        <td class="optional">可空</td>
+                        <td>访问地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>documentation_url</td>
+                        <td>URLField</td>
+                        <td class="optional">可空</td>
+                        <td>文档地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>support_contact</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>技术支持联系方式</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>business_criticality</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>业务重要性</td>
+                        <td>critical/high/medium/low</td>
+                    </tr>
+                    <tr>
+                        <td>data_classification</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>数据分类</td>
+                        <td>public/internal/confidential/restricted</td>
+                    </tr>
+                    <tr>
+                        <td>compliance_requirements</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>合规要求</td>
+                        <td>存储合规标准列表</td>
+                    </tr>
+                    <tr>
+                        <td>backup_frequency</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>备份频率</td>
+                        <td>daily/weekly/monthly/none</td>
+                    </tr>
+                    <tr>
+                        <td>rto_hours</td>
+                        <td>IntegerField</td>
+                        <td class="optional">可空</td>
+                        <td>恢复时间目标(小时)</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>rpo_hours</td>
+                        <td>IntegerField</td>
+                        <td class="optional">可空</td>
+                        <td>恢复点目标(小时)</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>maintenance_window</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>维护窗口</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>tags</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>标签</td>
+                        <td>存储标签列表</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">created_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>创建者</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="assets">
+            <h2>6. 资产管理模块 (assets)</h2>
+            
+            <h3>6.1 Asset (资产表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> assets<br>
+                <strong>描述:</strong> IT资产管理表，记录企业所有IT设备和软件资产信息
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>资产ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td>asset_tag</td>
+                        <td>CharField(100)</td>
+                        <td class="required">唯一</td>
+                        <td>资产标签</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>CharField(255)</td>
+                        <td class="required">必填</td>
+                        <td>资产名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>category</td>
+                        <td>CharField(50)</td>
+                        <td class="required">选择</td>
+                        <td>资产类别</td>
+                        <td>server/network/storage/desktop/laptop/mobile/software</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>资产类型</td>
+                        <td>具体的设备类型</td>
+                    </tr>
+                    <tr>
+                        <td>brand</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>品牌</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>model</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>型号</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>serial_number</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>序列号</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>mac_address</td>
+                        <td>CharField(17)</td>
+                        <td class="optional">可空</td>
+                        <td>MAC地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>ip_address</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="optional">可空</td>
+                        <td>IP地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>hostname</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>主机名</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>资产状态</td>
+                        <td>active/inactive/maintenance/retired/disposed</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">owner</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>资产负责人</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">custodian</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>资产保管人</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">department</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>所属部门</td>
+                        <td>→ Department.id</td>
+                    </tr>
+                    <tr>
+                        <td>location</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>物理位置</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>purchase_date</td>
+                        <td>DateField</td>
+                        <td class="optional">可空</td>
+                        <td>采购日期</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>purchase_cost</td>
+                        <td>DecimalField(10,2)</td>
+                        <td class="optional">可空</td>
+                        <td>采购成本</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>vendor</td>
+                        <td>CharField(255)</td>
+                        <td class="optional">可空</td>
+                        <td>供应商</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>warranty_start</td>
+                        <td>DateField</td>
+                        <td class="optional">可空</td>
+                        <td>保修开始日期</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>warranty_end</td>
+                        <td>DateField</td>
+                        <td class="optional">可空</td>
+                        <td>保修结束日期</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>depreciation_method</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>折旧方法</td>
+                        <td>straight_line/declining_balance/none</td>
+                    </tr>
+                    <tr>
+                        <td>useful_life_years</td>
+                        <td>IntegerField</td>
+                        <td class="optional">可空</td>
+                        <td>使用年限</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>current_value</td>
+                        <td>DecimalField(10,2)</td>
+                        <td class="optional">可空</td>
+                        <td>当前价值</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>specifications</td>
+                        <td>JSONField</td>
+                        <td class="required">默认{}</td>
+                        <td>技术规格</td>
+                        <td>存储详细配置信息</td>
+                    </tr>
+                    <tr>
+                        <td>software_licenses</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>软件许可证</td>
+                        <td>存储软件许可信息</td>
+                    </tr>
+                    <tr>
+                        <td>compliance_status</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>合规状态</td>
+                        <td>compliant/non_compliant/unknown</td>
+                    </tr>
+                    <tr>
+                        <td>security_classification</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>安全分类</td>
+                        <td>public/internal/confidential/restricted</td>
+                    </tr>
+                    <tr>
+                        <td>monitoring_enabled</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>启用监控</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>backup_required</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>需要备份</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>tags</td>
+                        <td>JSONField</td>
+                        <td class="required">默认[]</td>
+                        <td>标签</td>
+                        <td>存储标签列表</td>
+                    </tr>
+                    <tr>
+                        <td>notes</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>备注</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">created_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>创建者</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.2 AssetChangeLog (资产变更日志表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> asset_change_logs<br>
+                <strong>描述:</strong> 资产变更日志表，记录资产的所有变更历史
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>日志ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">asset</td>
+                        <td>ForeignKey</td>
+                        <td class="required">外键</td>
+                        <td>关联资产</td>
+                        <td>→ Asset.id</td>
+                    </tr>
+                    <tr>
+                        <td>change_type</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>变更类型</td>
+                        <td>create/update/delete/transfer/maintenance</td>
+                    </tr>
+                    <tr>
+                        <td>field_name</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>字段名称</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>old_value</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>旧值</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>new_value</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>新值</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>reason</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>变更原因</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>change_date</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>变更时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">changed_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>变更人</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="admin_management">
+            <h2>7. 系统管理模块 (admin_management)</h2>
+            
+            <h3>7.1 SystemConfig (系统配置表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> system_configs<br>
+                <strong>描述:</strong> 系统配置管理表，存储系统的各种配置参数
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>AutoField</td>
+                        <td class="required">主键</td>
+                        <td>配置ID</td>
+                        <td>自动生成</td>
+                    </tr>
+                    <tr>
+                        <td>key</td>
+                        <td>CharField(100)</td>
+                        <td class="required">唯一</td>
+                        <td>配置键</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>配置值</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>配置描述</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>category</td>
+                        <td>CharField(50)</td>
+                        <td class="required">选择</td>
+                        <td>配置分类</td>
+                        <td>system/security/notification/integration</td>
+                    </tr>
+                    <tr>
+                        <td>data_type</td>
+                        <td>CharField(20)</td>
+                        <td class="required">选择</td>
+                        <td>数据类型</td>
+                        <td>string/integer/boolean/json/float</td>
+                    </tr>
+                    <tr>
+                        <td>is_sensitive</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认False</td>
+                        <td>是否敏感</td>
+                        <td>敏感信息需加密存储</td>
+                    </tr>
+                    <tr>
+                        <td>is_editable</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否可编辑</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>validation_rules</td>
+                        <td>JSONField</td>
+                        <td class="required">默认{}</td>
+                        <td>验证规则</td>
+                        <td>存储验证规则配置</td>
+                    </tr>
+                    <tr>
+                        <td>default_value</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>默认值</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>创建时间</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>更新时间</td>
+                        <td>auto_now=True</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">updated_by</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>更新者</td>
+                        <td>→ User.id</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>7.2 AuditLog (审计日志表)</h3>
+            <div class="table-info">
+                <strong>表名:</strong> audit_logs<br>
+                <strong>描述:</strong> 系统审计日志表，记录用户的所有操作行为
+            </div>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>描述</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="primary-key">id</td>
+                        <td>UUIDField</td>
+                        <td class="required">主键</td>
+                        <td>日志ID</td>
+                        <td>UUID格式</td>
+                    </tr>
+                    <tr>
+                        <td class="foreign-key">user</td>
+                        <td>ForeignKey</td>
+                        <td class="optional">可空</td>
+                        <td>操作用户</td>
+                        <td>→ User.id</td>
+                    </tr>
+                    <tr>
+                        <td>action</td>
+                        <td>CharField(100)</td>
+                        <td class="required">必填</td>
+                        <td>操作动作</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>resource_type</td>
+                        <td>CharField(50)</td>
+                        <td class="optional">可空</td>
+                        <td>资源类型</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>resource_id</td>
+                        <td>CharField(100)</td>
+                        <td class="optional">可空</td>
+                        <td>资源ID</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>ip_address</td>
+                        <td>GenericIPAddressField</td>
+                        <td class="optional">可空</td>
+                        <td>IP地址</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>user_agent</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>用户代理</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>request_method</td>
+                        <td>CharField(10)</td>
+                        <td class="optional">可空</td>
+                        <td>请求方法</td>
+                        <td>GET/POST/PUT/DELETE等</td>
+                    </tr>
+                    <tr>
+                        <td>request_url</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>请求URL</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>request_data</td>
+                        <td>JSONField</td>
+                        <td class="optional">可空</td>
+                        <td>请求数据</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>response_status</td>
+                        <td>IntegerField</td>
+                        <td class="optional">可空</td>
+                        <td>响应状态码</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>response_data</td>
+                        <td>JSONField</td>
+                        <td class="optional">可空</td>
+                        <td>响应数据</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>execution_time</td>
+                        <td>FloatField</td>
+                        <td class="optional">可空</td>
+                        <td>执行时间(秒)</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>is_success</td>
+                        <td>BooleanField</td>
+                        <td class="required">默认True</td>
+                        <td>是否成功</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>error_message</td>
+                        <td>TextField</td>
+                        <td class="optional">可空</td>
+                        <td>错误信息</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>timestamp</td>
+                        <td>DateTimeField</td>
+                        <td class="required">自动</td>
+                        <td>时间戳</td>
+                        <td>auto_now_add=True</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div style="margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 5px;">
+            <h3>外键关联关系总结</h3>
+            <ul>
+                <li><strong>用户相关:</strong> UserProfile → User, LoginLog → User, UserSession → User, Role权限关联</li>
+                <li><strong>组织架构:</strong> Department自关联(parent), Employee → User/Department/Position, Position → Department</li>
+                <li><strong>菜单管理:</strong> Menu自关联(parent), UserMenuConfig → User</li>
+                <li><strong>IP管理:</strong> IPRecord → User(created_by), ScanTask → User(created_by)</li>
+                <li><strong>业务管理:</strong> BusinessSystem → User(owner/created_by), BusinessSystemDependency自关联</li>
+                <li><strong>资产管理:</strong> Asset → User(owner/custodian/created_by), Asset → Department, AssetChangeLog → Asset/User</li>
+                <li><strong>系统管理:</strong> SystemConfig → User(updated_by), AuditLog → User</li>
+            </ul>
+            
+            <h3>数据库设计特点</h3>
+            <ul>
+                <li><strong>统一主键:</strong> 大部分表使用UUID作为主键，确保全局唯一性</li>
+                <li><strong>审计字段:</strong> 包含created_at、updated_at、created_by等审计字段</li>
+                <li><strong>软删除:</strong> 部分表支持软删除机制</li>
+                <li><strong>JSON字段:</strong> 使用JSONField存储复杂配置和扩展信息</li>
+                <li><strong>状态管理:</strong> 通过status字段管理记录状态</li>
+                <li><strong>权限控制:</strong> 基于角色的权限管理体系</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

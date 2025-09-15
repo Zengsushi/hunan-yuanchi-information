@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Asset, AssetCategory, AssetStatus, Server, NetworkDevice, Supplier
+from .models import Asset, AssetCategory, AssetStatus, Server, NetworkDevice,Supplier
 
 
 class AssetCategorySerializer(serializers.ModelSerializer):
@@ -53,7 +53,6 @@ class NetworkDeviceCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = NetworkDevice
         fields = '__all__'
-
 
 class SupplierSerializer(serializers.ModelSerializer):
     class Meta:

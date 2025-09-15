@@ -19,15 +19,13 @@ const softwareAssetApi = {
     });
   },
 
-  // 创建软件资产 
-  create(formData) {
-    console.log("创建软件资产 API 被调用")
+  // 创建软件资产
+  create(data) {
     return request({
       url: '/software-assets/',
       method: 'post',
-      formData
+      data
     });
-
   },
 
   // 更新软件资产

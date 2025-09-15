@@ -354,6 +354,7 @@ export default {
         const response = await softwareAssetApi.getList(params)
         // 更新传入子组件数据
         tableData.value = response.data.results
+        console.log('tableData:', tableData.value);
         pagination.total = response.data.count
 
 

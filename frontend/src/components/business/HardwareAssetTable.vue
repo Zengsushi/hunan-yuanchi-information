@@ -11,7 +11,7 @@
         </div>
         
         <!-- 硬件设备统计按钮组 -->
-        <div class="hardware-stats-buttons">
+      <div class="hardware-stats-buttons">
         <div 
           class="stats-button active"
           :class="{ 'stats-active': currentFilter === 'active' }"

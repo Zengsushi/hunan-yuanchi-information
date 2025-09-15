@@ -22,7 +22,17 @@
       <div class="form-section basic-info">
         <h4 class="section-title">基本信息</h4>
           
-          <a-row :gutter="16">
+          <a-row :gutter="24">
+            <a-col :span="12">
+              <a-form-item label="软件名称" name="name" class="form-item" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
+                <a-input
+                  v-model:value="formData.name"
+                  placeholder="请输入软件名称"
+                  :maxlength="50"
+                  show-count
+                />
+              </a-form-item>
+            </a-col>
             <a-col :span="12">
               <a-form-item label="资产标签" name="asset_tag" class="form-item" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
                 <a-input
@@ -43,9 +53,6 @@
                 />
               </a-form-item>
             </a-col>
-          </a-row>
-          
-          <a-row :gutter="16">
             <a-col :span="12">
               <a-form-item label="资产责任人" name="asset_owner" class="form-item">
                 <a-select
@@ -90,9 +97,6 @@
                 </a-select>
               </a-form-item>
             </a-col>
-          </a-row>
-          
-          <a-row :gutter="16">
             <a-col :span="12">
               <a-form-item label="采购日期" name="purchase_date" class="form-item">
                 <a-date-picker
@@ -105,6 +109,10 @@
                 />
               </a-form-item>
             </a-col>
+          </a-row>
+          
+          <a-row :gutter="16">
+
 
           </a-row>
         
@@ -116,19 +124,25 @@
           
           <a-row :gutter="24">            
             <a-col :span="12">
-              <a-form-item label="制造商" name="manufacturer" class="form-item">
-                <a-input 
-                  v-model:value="formData.manufacturer" 
+                <a-form-item label="制造商" name="manufacturer" class="form-item">
+                <a-select
+                  v-model:value="formData.manufacturer"
                   placeholder="请选择制造商"
-                />
-              </a-form-item>
-            </a-col>
-            <a-col :span="12">
-              <a-form-item label="规格参数" name="specification_parameter" class="form-item">
-                <a-input 
-                  v-model:value="formData.specification_parameter" 
-                  placeholder="请输入规格参数"
-                />
+                  show-search
+                  :filter-option="false"
+                  :loading="userLoading"
+                  @search="searchUsers"
+                  @focus="loadUsers"
+                >
+                  <a-select-option
+                    v-for="user in manufacturers"
+                    :key="user.id"
+                    :value="user.value"
+                    :label="user.label"
+                  >
+                    {{ user.label }}
+                  </a-select-option>
+                </a-select>
               </a-form-item>
             </a-col>
             <a-col :span="12">
@@ -143,9 +157,32 @@
             </a-col>
 
             <a-col :span="12">
-              <a-form-item label="保修类型" name="warranty_type" class="form-item">
+               <a-form-item label="保修类型" name="warranty_type" class="form-item">
+                <a-select
+                  v-model:value="formData.warranty_type"
+                  placeholder="请选择保修类型"
+                  show-search
+                  :filter-option="false"
+                  :loading="userLoading"
+                  @search="searchUsers"
+                  @focus="loadUsers"
+                >
+                  <a-select-option
+                    v-for="user in warrantyTypes"
+                    :key="user.id"
+                    :value="user.value"
+                    :label="user.label"
+                  >
+                    {{ user.label }}
+                  </a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+
+            <a-col :span="12">
+              <a-form-item label="规格参数" name="specification_parameter" class="form-item">
                 <a-input 
-                  v-model:value="formData.warranty_type" 
+                  v-model:value="formData.specification_parameter" 
                   placeholder="请输入规格参数"
                 />
               </a-form-item>
@@ -176,7 +213,7 @@
           :loading="submitLoading"
           :disabled="!isFormValid"
         >
-          {{ isEdit ? '更新设备' : '新增设备' }}
+          {{ isEdit ? '更新设施' : '新增设施' }}
         </a-button>
       </div>
     </template>
@@ -190,6 +227,7 @@ import dayjs from 'dayjs'
 import { hardwareAssetApi } from '@/api/hardwareAsset'
 import { supplierApi } from '@/api/supplier'
 import { userApi } from '@/api/user'
+import softwareAssetApi from '@/api/softwareAsset'
 
 // 移除了大量不必要的图标导入
 
@@ -218,11 +256,11 @@ const submitLoading = ref(false)
 const userLoading = ref(false)
 const supplierLoading = ref(false)
 const supplierOptions = ref([])
-const supplierContacts = ref([])
 const specifications = ref([{ key: '', value: '' }])
 
 // 表单数据
 const formData = reactive({
+  name : '',
   asset_tag: '',
   model: '',
   asset_owner: '',
@@ -242,6 +280,7 @@ const projectSource = ref([
   { label: '研发项目', value: 'research' },
   { label: '其他', value: 'other' }
 ])
+
  
  // 资产责任人选项
  const userOptions = ref([
@@ -250,7 +289,22 @@ const projectSource = ref([
    { id:3,label: '王五', value: 'wangwu' },
    { id:4,label: '赵六', value: 'zhaoliu' }
  ])
+
+const warrantyTypes = ref([
+  { label: '原厂保修', value: 'original' },
+  { label: '第三方保修', value: 'third_party' },
+  { label: '无保修', value: 'none' }
+])
  
+const manufacturers = ref([
+  { label: '戴尔 (Dell)', value: 'dell' },
+  { label: '惠普 (HP)', value: 'hp' },
+  { label: '联想 (Lenovo)', value: 'lenovo' },
+  { label: '华为 (Huawei)', value: 'huawei' },
+  { label: '思科 (Cisco)', value: 'cisco' },
+  { label: '苹果 (Apple)', value: 'apple' },
+  { label: '其他', value: 'other' }
+])
 
 // 计算属性
 const dialogVisible = computed({
@@ -270,7 +324,7 @@ const isFormValid = computed(() => {
          formData.manufacturer && 
          formData.serial_number &&
          formData.asset_owner &&
-         formData.purchase_date 
+         formData.purchase_date
 })
 
 // 表单验证规则
@@ -418,7 +472,7 @@ const handleSubmit = async () => {
     
     // 显示加载提示
     const loadingMessage = message.loading(
-      props.isEdit ? '正在更新设备信息...' : '正在创建设备...', 
+      props.isEdit ? '正在更新设施信息...' : '正在创建设施...', 
       0
     )
     
@@ -436,13 +490,13 @@ const handleSubmit = async () => {
     }
     
     if (props.isEdit && props.assetData?.id) {
-      await hardwareAssetApi.update(props.assetData.id, submitData)
+      await softwareAssetApi.update(props.assetData.id, submitData)
       loadingMessage()
-      message.success('设备信息更新成功！')
+      message.success('资产信息更新成功！')
     } else {
-      await hardwareAssetApi.create(submitData)
+      await softwareAssetApi.create(submitData)
       loadingMessage()
-      message.success('设备创建成功！')
+      message.success('资产创建成功！')
     }
     
     emit('success')

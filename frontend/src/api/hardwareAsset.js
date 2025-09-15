@@ -100,7 +100,7 @@ export const hardwareAssetApi = {
   // 导出硬件设施数据
   export(params = {}) {
     return request({
-      url: '/hardware-assets/export/',
+      url: '/hardware-assets/export_assets/',
       method: 'get',
       params,
       responseType: 'blob'

@@ -97,7 +97,7 @@ class HardwareAssetCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("保修结束日期必须晚于开始日期")
 
         return attrs
-
+    
     def validate(self, attrs):
         # 处理warranty_date_range
         warranty_date_range = attrs.pop('warranty_date_range', None)

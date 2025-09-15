@@ -13,6 +13,9 @@ class AssetAdmin(admin.ModelAdmin):
     ordering = ['-created_at']
 
 
+
+
+
 @admin.register(ZabbixTemplate)
 class ZabbixTemplateAdmin(admin.ModelAdmin):
     list_display = ['name', 'templateid', 'category', 'items_count', 'triggers_count', 'created_at']
@@ -35,7 +38,7 @@ class SupplierAdmin(admin.ModelAdmin):
     list_filter = ['is_active', 'created_at']
     search_fields = ['name', 'contact_person', 'phone', 'email']
     ordering = ['name']
-
+    
     fieldsets = (
         ('基本信息', {
             'fields': ('name', 'contact_person', 'phone', 'email')
@@ -62,7 +65,7 @@ class HardwareAssetAdmin(admin.ModelAdmin):
         'asset_owner', 'supplier__name'
     ]
     ordering = ['-created_at']
-
+    
     fieldsets = (
         ('基本信息', {
             'fields': (
@@ -85,9 +88,9 @@ class HardwareAssetAdmin(admin.ModelAdmin):
             'fields': ('monitoring_status',)
         }),
     )
-
+    
     readonly_fields = ('created_at', 'updated_at')
-
+    
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = list(super().get_readonly_fields(request, obj))
         if obj:  # 编辑时
@@ -99,7 +102,7 @@ class SpecificationUpdateRecordInline(admin.TabularInline):
     model = SpecificationUpdateRecord
     extra = 0
     readonly_fields = ('update_time',)
-
+    
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -108,7 +111,7 @@ class WarrantyUpdateRecordInline(admin.TabularInline):
     model = WarrantyUpdateRecord
     extra = 0
     readonly_fields = ('update_time',)
-
+    
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -122,10 +125,10 @@ class SpecificationUpdateRecordAdmin(admin.ModelAdmin):
     search_fields = ['hardware_asset__asset_tag', 'updated_by']
     ordering = ['-update_time']
     readonly_fields = ('update_time',)
-
+    
     def has_add_permission(self, request):
         return False
-
+    
     def has_change_permission(self, request, obj=None):
         return False
 
@@ -140,9 +143,9 @@ class WarrantyUpdateRecordAdmin(admin.ModelAdmin):
     search_fields = ['hardware_asset__asset_tag', 'updated_by']
     ordering = ['-update_time']
     readonly_fields = ('update_time',)
-
+    
     def has_add_permission(self, request):
         return False
-
+    
     def has_change_permission(self, request, obj=None):
         return False
