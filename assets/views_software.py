@@ -54,18 +54,17 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(software_status=software_status)
         return queryset
 
+    # TODO 获取软件资产会刷新 资产统计  -> 统计写单的接口
     @action(detail=False, methods=['get'])
     def in_use(self, request):
         """获取再用状态软件列表"""
-        print("in_use 接口调用")
-        queryset = self.get_queryset().filter(software_status='active')
+        queryset = self.get_queryset().filter(asset_status='in_use')
         queryset = self.filter_queryset(queryset)
-        print(queryset)
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-
+        #
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 

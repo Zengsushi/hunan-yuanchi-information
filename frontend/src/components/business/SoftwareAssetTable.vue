@@ -28,14 +28,14 @@
           <div 
             class="stats-button active"
             :class="{ 'stats-active': currentFilter === 'test' }"
-            @click="handleStatsClick('test')"
+            @click="handleStatsClick('total')"
           >
             <div class="button-icon">
               <i class="anticon anticon-check-circle"></i>
             </div>
             <div class="button-content">  
-              <div class="button-title">占位</div>
-              <div class="button-count">{{ activeCount || 0 }}</div>
+              <div class="button-title">停用</div>
+              <div class="button-count">{{ blockUpCount || 0 }}</div>
             </div>
           </div>
         </div>
@@ -278,59 +278,7 @@
           <template v-else-if="column.key === 'supplier_contact'">
             <span :title="record.serial_number">{{ record.supplier_contact || '-' }}</span>
           </template>
-          <!-- 操作列 -->
-          <template v-else-if="column.key === 'action'">
-            <div class="action-buttons">
-              <a-tooltip title="查看详情">
-                <a-button 
-                  type="text" 
-                  size="small" 
-                  @click="viewDetails(record)"
-                  class="action-btn"
-                >
-                  <template #icon><EyeOutlined /></template>
-                </a-button>
-              </a-tooltip>
-              <a-tooltip title="编辑">
-                <a-button 
-                  type="text" 
-                  size="small" 
-                  @click="editAsset(record)"
-                  class="action-btn"
-                >
-                  <template #icon><EditOutlined /></template>
-                </a-button>
-              </a-tooltip>
-              <a-tooltip title="历史记录">
-                <a-button 
-                  type="text" 
-                  size="small" 
-                  @click="viewHistory(record)"
-                  class="action-btn"
-                >
-                  <template #icon><HistoryOutlined /></template>
-                </a-button>
-              </a-tooltip>
-              <a-popconfirm
-                title="确定要删除这个设备吗？"
-                @confirm="deleteAsset(record)"
-                ok-text="确定"
-                cancel-text="取消"
-              >
-                <a-tooltip title="删除">
-                  <a-button 
-                    type="text" 
-                    size="small" 
-                    danger
-                    :loading="record.deleteLoading"
-                    class="action-btn danger"
-                  >
-                    <template #icon><DeleteOutlined /></template>
-                  </a-button>
-                </a-tooltip>
-              </a-popconfirm>
-            </div>
-          </template>
+
         </template>
         
       </a-table>
@@ -410,11 +358,15 @@ const props = defineProps({
     type: Number,
     default: 0
   },
+  inUseCount: {
+    type: Number,
+    default: 0
+  },
   activeCount: {
     type: Number,
     default: 0
   },
-  maintenanceCount: {
+  blockUpCount: {
     type: Number,
     default: 0
   },
@@ -588,9 +540,7 @@ const rowSelection = computed(() => ({
   }
 }))
 
-// 计算属性
-const hasSelected = computed(() => props.selectedRowKeys.length > 0)
-const selectedCount = computed(() => props.selectedRowKeys.length)
+
 
 // 方法
 const toggleAdvancedFilter = () => {

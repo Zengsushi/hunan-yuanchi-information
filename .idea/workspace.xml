@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a386d845-1082-47a6-a5c9-1644c198663b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14bd54b6-a72a-43da-9059-455bfc8f511e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/14bd54b6-a72a-43da-9059-455bfc8f511e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/software_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/software_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/views_software.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views_software.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/softwareAsset.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/softwareAsset.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/django.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/django.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,6 +133,7 @@
       <workItem from="1757653992139" duration="8460000" />
       <workItem from="1757724883683" duration="28006000" />
       <workItem from="1757897448938" duration="22033000" />
+      <workItem from="1757941545701" duration="3674000" />
     </task>
     <servers />
   </component>

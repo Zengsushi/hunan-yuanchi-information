@@ -11,7 +11,7 @@
       :selected-row-keys="selectedRowKeys"
       :totalCount="statistics.total"
       :activeCount="statistics.active"
-      :maintenanceCount="statistics.maintenance"
+      :blockUpCount="statistics.block_up"
       :retiredCount="statistics.retired"
       @search="handleSearch"
       @reset="handleReset"
@@ -207,15 +207,12 @@ export default {
     // 统计计算属性
     const statistics = computed(() => {
       const total = tableData.value.length || 0
-      const active = tableData.value.filter(item => item.asset_status === 'active').length
-      const maintenance = tableData.value.filter(item => item.asset_status === 'maintenance').length
-      const retired = tableData.value.filter(item => item.asset_status === 'retired').length
-      console.log(total) 
+      const active = tableData.value.filter(item => item.asset_status === 'in_use').length
+      const block_up = tableData.value.filter(item => item.asset_status === 'block_up').length
       return {
         total: pagination.total || 0,
         active,
-        maintenance,
-        retired
+        block_up
       }
     })
 
@@ -318,6 +315,9 @@ export default {
     const softwareType = ref("") ;
     const manufacturer = ref("") ;
 
+    // 获取软件列表数据指向参数
+    const currentFilter = ref("total") ; // 默认显示所有软件
+
     // 加载软件资产列表数据
     const fetchData = async () => {
       loading.value = true
@@ -365,6 +365,18 @@ export default {
       }
     }
 
+    // 获取在用软件资产数据列表
+    const getInUseList  = async () => {
+      try {
+        const response = await softwareAssetApi.getInUseList()
+        tableData.value = response.data.results
+        pagination.total = response.data.count
+        message.success('软件资产列表更新成功')
+      } catch (error) {
+        message.error('获取数据失败：' + (error.message || '未知错误'))
+      }
+    }
+
 
     
     // 新的事件处理方法
@@ -392,31 +404,33 @@ export default {
       pagination.page = 1
       fetchData()
     }
-    // 统计按钮点击事件
-    const currentFilter = ref("") ;
+
     // 处理统计按钮点击事件
     const handleStatsFilter = (filterType) => {
+
+      
       currentFilter.value = filterType;    
+      console.log(filterType);
       // 根据点击的统计按钮类型进行相应的过滤或操作
       switch (filterType) {
-        case 'total':
-          // 显示所有软件
-          assetStatus.value = [];
-          break;
         case 'active':
           // 显示在用软件
-          assetStatus.value = "in_use";
+          assetStatus.value = "active";
+          fetchData().then(() => {
+            getInUseList() ;
+          });
+          break;
+        case "total":
+          assetStatus.value = "";
+          fetchData() ;
           break;
         default:
           break;
       }
-      
       // 更新当前过滤器状态
       currentFilter.value = filterType;
-      
       // 重新加载数据
       pagination.current = 1;
-      fetchData()
     };
 
     const handleSelectionChange = (selectedKeys, selectedRows) => {
@@ -436,6 +450,7 @@ export default {
       isEdit.value = true
       formDialogVisible.value = true
     }
+
 
     // 软件资产删除
     const handleDelete = (record) => {
@@ -620,7 +635,6 @@ export default {
       }
     }
 
-
     // 历史记录加载函数
     const loadLicenseHistory = async () => {
       if (!currentHistoryAsset.value) return
@@ -693,16 +707,18 @@ export default {
       return option ? option.label : '未知'
     }
 
-    const test = async () => {
-      const res = await softwareAssetApi.getInUseList
-      console.log(res)
-    }
     // 生命周期
     onMounted(() => {
       fetchDictionaryData()
-      fetchData()
-      test() 
+      if (currentFilter.value == "total"){
+        fetchData() ;
+      }
+      if (currentFilter.value == "active"){
+        getInUseList() ;
+      }
     })
+
+
 
 
     return {
