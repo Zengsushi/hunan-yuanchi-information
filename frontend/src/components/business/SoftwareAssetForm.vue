@@ -250,7 +250,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, watch, nextTick, onMounted , onBeforeMount } from 'vue'
+import { ref, reactive, computed, watch, nextTick, onMounted  ,onBeforeUnmount, onBeforeMount } from 'vue'
 import { message } from 'ant-design-vue'
 import dayjs from 'dayjs'
 import { hardwareAssetApi } from '@/api/hardwareAsset'
@@ -592,8 +592,18 @@ const handleSubmitFailed = (errorInfo) => {
 
 const handleClose = () => {
   dialogVisible.value = false
+  formData.forEach(key => {
+    formData[key] = ''
+  })
   nextTick(() => {
     resetForm()
+  })
+
+}
+
+const clearForm = () =>  {
+  Object.keys(formData).forEach(key => {
+    formData[key] = ''  // 或 null，根据需要
   })
 }
 
@@ -609,14 +619,16 @@ watch(
           resetForm()
         }
       })
-    }
-  }
+    } 
+  },
 )
+
+
 // 生命周期
 onMounted(() => {
   loadUsers()
   loadSuppliers()
-  handleEdit()
+
 })
 
 </script>

@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a386d845-1082-47a6-a5c9-1644c198663b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/software_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/software_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.cache/eslint/31ba1116.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/business/SoftwareAssetForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/business/SoftwareAssetList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +130,7 @@
       <workItem from="1757897448938" duration="22033000" />
       <workItem from="1757941545701" duration="4281000" />
       <workItem from="1757984010755" duration="15851000" />
-      <workItem from="1758008932977" duration="2891000" />
+      <workItem from="1758008932977" duration="3494000" />
     </task>
     <servers />
   </component>
