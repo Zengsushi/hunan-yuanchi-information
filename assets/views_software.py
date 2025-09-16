@@ -46,6 +46,7 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
             return SoftwareAssetUpdateSerializer
         return SoftwareAssetSerializer
 
+    # 获取软件资产列表(全部数据, 待优化)
     def get_queryset(self):
         """根据软件状态过滤查询集"""
         queryset = super().get_queryset()
@@ -54,33 +55,44 @@ class SoftwareAssetViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(software_status=software_status)
         return queryset
 
+    @action(detail=False, methods=['get'])
+    def dif_status_list(self, request):
+        """获取不同状态的软件列表（支持关键字模糊搜索 + 分页）"""
+        asset_status = request.query_params.get("status")
+
+        keyword = request.query_params.get("keyword")
+        queryset = self.get_queryset()
+        if asset_status:
+            queryset = queryset.filter(asset_status=asset_status)
+        if keyword:
+            queryset = queryset.filter(
+                Q(name__icontains=keyword) |
+                Q(version__icontains=keyword) |
+                Q(vendor__icontains=keyword) |
+                Q(asset_owner__icontains=keyword)
+            )
+        queryset = self.filter_queryset(queryset)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     # TODO 获取软件资产会刷新 资产统计  -> 统计写单的接口
     @action(detail=False, methods=['get'])
-    def in_use(self, request):
-        """获取再用状态软件列表"""
-        queryset = self.get_queryset().filter(asset_status='in_use')
-        queryset = self.filter_queryset(queryset)
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        #
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    @action(detail=False, methods=['get'])
-    def expired(self, request):
-        """获取过期软件列表"""
-        queryset = self.get_queryset().filter(software_status='expired')
-        queryset = self.filter_queryset(queryset)
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+    def asset_count(self, request):
+        # 输出调用api 传入的参数
+        use_count = self.get_queryset().filter(asset_status="in_use").count()
+        block_up_count = self.get_queryset().filter(asset_status="block_up").count()
+        return Response({
+            "res": 200,
+            "massage": "成功",
+            "data": {
+                "use_count": use_count,
+                "block_up_count": block_up_count
+            }
+        })
 
     @action(detail=True, methods=['get'])
     def license_history(self, request, pk=None):

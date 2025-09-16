@@ -13,8 +13,8 @@
         <div class="software-stats-buttons">
           <div 
             class="stats-button active"
-            :class="{ 'stats-active': currentFilter === 'active' }"
-            @click="handleStatsClick('active')"
+            :class="{ 'stats-active': currentFilter === 'in_use' }"
+            @click="handleStatsClick('in_use')"
           >
             <div class="button-icon">
               <i class="anticon anticon-check-circle"></i>
@@ -27,8 +27,8 @@
           <div class="software-stats-buttons">
           <div 
             class="stats-button active"
-            :class="{ 'stats-active': currentFilter === 'test' }"
-            @click="handleStatsClick('total')"
+            :class="{ 'stats-active': currentFilter === 'block_up' }"
+            @click="handleStatsClick('block_up')"
           >
             <div class="button-icon">
               <i class="anticon anticon-check-circle"></i>
@@ -185,7 +185,7 @@
     <!-- 软件资产列表表格 -->
     <div class="table-wrapper">
       <!-- 表格头部 -->
-      <div class="table-header" v-if="currentFilter === 'active'">
+      <div class="table-header" v-if="currentFilter === 'in_use'">
         <div class="table-title">
           <h4>软件列表</h4>
         </div>
@@ -228,21 +228,41 @@
       >
         <!-- 使用新的v-slot语法 -->
         <template #bodyCell="{ column, record }">
-          <!-- 资产标签	列 -->
+          <!-- 资产标签 列 -->
           <template v-if="column.key === 'asset_tag'">
-            <div>
-              <span class="asset-name">{{ record.asset_tag  }} </span>
-            </div>
+            <span :title="record.asset_tag">{{ record.asset_tag || '-' }}</span>
           </template>
-          <!-- 型号 列 -->
-          <template v-else-if="column.key === 'model'">
-            <span :title="record.serial_number">{{ record.software_type || '-' }}</span>
+          <!-- 软件类型 列 -->
+          <template v-else-if="column.key === 'software_type'">
+            <a-tag :color="getSoftwareTypeColor(record.software_type)" size="small">
+              {{ getSoftwareTypeLabel(record.software_type) || '-' }}
+            </a-tag>
+          </template>
+          <!-- 软件名称 列 -->
+          <template v-else-if="column.key === 'software_name'">
+            <span :title="record.software_name">{{ record.software_name || '-' }}</span>
+          </template>
+          <!-- 软件版本 列 -->
+          <template v-else-if="column.key === 'software_version'">
+            <span :title="record.software_version">{{ record.software_version || '-' }}</span>
+          </template>
+          <!-- 许可证 列 -->
+          <template v-else-if="column.key === 'software_license'">
+            <span :title="record.software_license">{{ record.software_license || '-' }}</span>
           </template>
           <!-- 制造商 列 -->
           <template v-else-if="column.key === 'vendor'">
-            <span :title="record.serial_number">{{ record.vendor || '-' }}</span>
+            <span :title="record.vendor">{{ record.vendor || '-' }}</span>
           </template>
-          <!-- 监控状态列 -->
+          <!-- 资产负责人 列 -->
+          <template v-else-if="column.key === 'asset_owener'">
+            <span :title="record.asset_owener">{{ record.asset_owener || '-' }}</span>
+          </template>
+          <!-- 供应商负责人 列 -->
+          <template v-else-if="column.key === 'supplier_contact'">
+            <span :title="record.supplier_contact">{{ record.supplier_contact || '-' }}</span>
+          </template>
+          <!-- 监控状态列（兼容旧字段） -->
           <template v-else-if="column.key === 'monitoring_status'">
             <a-switch
               :checked="record.monitoring_status"
@@ -256,29 +276,60 @@
           </template>
           <!-- 保修状态 列 -->
           <template v-else-if="column.key === 'warranty_status'">
-            <a-tag :color="getWarrantyStatusColor(record.warranty_status)" size="small">
               {{ record.warranty_status || '-' }}
-            </a-tag>
+          </template> 
+          <template v-else-if="column.key === 'action'">
+            <div class="action-buttons">
+              <a-tooltip title="查看详情">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="viewDetails(record)"
+                  class="action-btn"
+                >
+                  <template #icon><EyeOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-tooltip title="编辑">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="editAsset(record)"
+                  class="action-btn"
+                >
+                  <template #icon><EditOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-tooltip title="历史记录">
+                <a-button 
+                  type="text" 
+                  size="small" 
+                  @click="viewHistory(record)"
+                  class="action-btn"
+                >
+                  <template #icon><HistoryOutlined /></template>
+                </a-button>
+              </a-tooltip>
+              <a-popconfirm
+                title="确定要删除这个设备吗？"
+                @confirm="deleteAsset(record)"
+                ok-text="确定"
+                cancel-text="取消"
+              >
+                <a-tooltip title="删除">
+                  <a-button 
+                    type="text" 
+                    size="small" 
+                    danger
+                    :loading="record.deleteLoading"
+                    class="action-btn danger"
+                  >
+                    <template #icon><DeleteOutlined /></template>
+                  </a-button>
+                </a-tooltip>
+              </a-popconfirm>
+            </div>
           </template>
-          <!-- 监控状态列（兼容旧字段） -->
-          <template v-else-if="column.key === 'monitoring_enabled'">
-            <a-switch
-              :checked="record.monitoring_enabled"
-              :loading="record.toggleLoading"
-              @change="(checked) => toggleMonitoring(record, checked)"
-              size="small"
-            />
-            <span class="monitoring-text">
-              {{ record.monitoring_enabled ? '已监控' : '未监控' }}
-            </span>
-          </template>
-          <template v-else-if="column.key === 'asset_owener'">
-            <span :title="record.serial_number">{{ record.asset_owener || '-' }}</span>
-          </template>
-          <template v-else-if="column.key === 'supplier_contact'">
-            <span :title="record.serial_number">{{ record.supplier_contact || '-' }}</span>
-          </template>
-
         </template>
         
       </a-table>
@@ -374,14 +425,19 @@ const props = defineProps({
     type: Number,
     default: 0
   },
+
   batchDeleting: {
     type: Boolean,
     default: false
   },
   currentFilter: {
     type: String,
-    default : "active"
-  } ,
+    default : "in_use"
+  }, 
+  detailDialogVisible: {
+    type : Boolean,
+    default : false
+  },
 })
 
 // Emits
@@ -432,7 +488,6 @@ const softwareTypeOptions = ref([
 ])
 
 // 表格列配置
-
 const columns = computed( () => {
   const inUseColumns = [
     {
@@ -445,50 +500,48 @@ const columns = computed( () => {
     },
     {
       title: '型号',
-      dataIndex: 'model',
-      key: 'model',
-      width: 150
+      dataIndex: 'software_type',
+      key: 'software_type',
+      width: 200
     },
     {
       title: '制造商',
       dataIndex: 'vendor',
       key: 'vendor',
       width: 120,
-      slots: { customRender: 'vendor' }
     },
     { 
       title: '监控状态',
       dataIndex: 'monitoring_status',
       key: 'monitoring_status',
-      width: 80
+      width: 100
     },
     {
       title: '保修状态',
       dataIndex: 'warranty_status',
       key: 'warranty_status',
-      width: 80
+      width: 100
     },
     {
       title: '资产负责人',
       dataIndex: 'asset_owener',
       key: 'asset_owener',
-      width: 80
+      width: 100
     },
     {
       title: '供应商负责人',
       dataIndex: 'supplier_contact',
       key: 'supplier_contact',
-      width: 80
+      width: 100
     },
     {
         title: '操作',
         key: 'action',
         align: 'center',
         width: 120,
-        slots: { customRender: 'action' }
     }]
 
-    const scrappedColumns = [
+    const BlockUpColumns = [
     {
       title: '资产标签',
       dataIndex: 'asset_tag',
@@ -498,31 +551,24 @@ const columns = computed( () => {
     },
     {
       title: '型号',
-      dataIndex: 'model',
-      key: 'model',
+      dataIndex: 'software_type',
+      key: 'software_type',
       width: 150,
       ellipsis: true
     },
     {
       title: '制造商',
-      dataIndex: 'manufacturer',
-      key: 'manufacturer',
-      width: 120
-    },
-    {
-      title: '操作',
-      key: 'action',
-      align: 'center',
+      dataIndex: 'vendor',
+      key: 'vendor',
       width: 120
     }
   ];
-
     const allColumns = []
     switch (props.currentFilter) {
-      case 'active':
+      case 'in_use':
         return inUseColumns;
-      case 'scrapped':
-        return scrappedColumns;
+      case 'block_up':
+        return BlockUpColumns;
       default:
         return allColumns;
     }
@@ -540,6 +586,16 @@ const rowSelection = computed(() => ({
   }
 }))
 
+// 监控状态更新
+const toggleMonitoring = async (record, checked) => {
+  record.toggleLoading = true;
+  try {
+    await emit('toggleMonitoring', record, checked);
+  } finally {
+    record.toggleLoading = false;
+  }
+}; 
+
 
 
 // 方法
@@ -548,7 +604,7 @@ const toggleAdvancedFilter = () => {
 }
 
 const handleSearchInput = (e) => {
-  emit('search-input', e.target.value)
+  emit('searchInput', e.target.value)
 }
 
 const handleStatusChange = (value) => {
@@ -562,6 +618,10 @@ const handleTypeChange = (value) => {
 const handleManufacturerInput = (e) => {
   emit('manufacturer-input', e.target.value)
 }
+
+const viewDetails = (record) => {
+  emit('viewDetails', record);
+};
 
 const handleSearch = () => {
   const searchParams = {
@@ -579,6 +639,10 @@ const handleReset = () => {
 
 const handleAdd = () => {
   emit('add')
+}
+
+const viewHistory = (record) => {
+  emit('history', record)
 }
 
 const handleEdit = (record) => {
@@ -607,6 +671,10 @@ const handleBatchOperations = () => {
 
 const handleListManagement = () => {
   emit('list-management')
+}
+
+const editAsset = (record) => {
+  emit('editAsset', record)
 }
 
 // 统计按钮点击处理

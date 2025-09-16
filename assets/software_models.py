@@ -28,6 +28,7 @@ class SoftwareAsset(models.Model):
 
     ASSET_STATUS_CHOICES = [
         ('in_use', '在用'),
+        ('block_up', '停用')
     ]
 
     LICENSE_STATUS_CHOICES = [
@@ -133,7 +134,7 @@ class SoftwareAsset(models.Model):
         return delta.days if delta.days >= 0 else 0
 
     def __str__(self):
-        return f"{self.software_name} v{self.version} - {self.asset_tag}"
+        return f"{self.name} v{self.version} - {self.asset_tag}"
 
     class Meta:
         verbose_name = "软件资产"

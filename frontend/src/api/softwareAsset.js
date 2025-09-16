@@ -11,14 +11,25 @@ const softwareAssetApi = {
     });
   },
 
-  // 获取再用状态软件列表
+  // 获取不同状态状态软件列表
   getInUseList(params = {}) {
+    console.log(params)
     return request({
-      url: '/software-assets/in_use/',
+      url: '/software-assets/dif_status_list/',
       method: 'get',
-      params
+      params : params
     });
   },
+
+  // 获取软件资产统计信息
+  getStatusCount(params = {}){
+      return request({
+        url : "/software-assets/asset_count/",
+        method: 'get',
+        params
+      })
+  },
+  
 
   // 获取软件资产详情
   getDetail(id) {
@@ -133,14 +144,6 @@ const softwareAssetApi = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
-    });
-  },
-
-  // 获取软件资产统计信息
-  getStatistics() {
-    return request({
-      url: '/software-assets/statistics/',
-      method: 'get'
     });
   },
 

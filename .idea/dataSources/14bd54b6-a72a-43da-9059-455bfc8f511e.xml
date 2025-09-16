@@ -499,7 +499,7 @@
     <routine id="190" parent="1" name="fts5"/>
     <schema id="191" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-09-15.01:23:18</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-09-16.07:14:26</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="192" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -2199,7 +2199,7 @@ created_at</ColNames>
       <Position>21</Position>
     </column>
     <column id="720" parent="562" name="asset_owner">
-      <DasType>integer|0s</DasType>
+      <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>22</Position>
     </column>
@@ -2397,2505 +2397,2519 @@ created_at</ColNames>
     </column>
     <column id="761" parent="565" name="version">
       <DasType>varchar(100)|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="762" parent="565" name="vendor">
-      <DasType>varchar(200)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="762" parent="565" name="software_type">
+      <DasType>varchar(30)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="763" parent="565" name="license_type">
-      <DasType>varchar(20)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="763" parent="565" name="vendor">
+      <DasType>varchar(200)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="764" parent="565" name="license_key">
-      <DasType>text|0s</DasType>
+    <column id="764" parent="565" name="license_type">
+      <DasType>varchar(20)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="765" parent="565" name="license_count">
-      <DasType>integer|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="765" parent="565" name="license_key">
+      <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="766" parent="565" name="license_start_date">
-      <DasType>date|0s</DasType>
+    <column id="766" parent="565" name="license_count">
+      <DasType>integer|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="767" parent="565" name="license_end_date">
+    <column id="767" parent="565" name="license_start_date">
       <DasType>date|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="768" parent="565" name="purchase_date">
+    <column id="768" parent="565" name="license_end_date">
       <DasType>date|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="769" parent="565" name="purchase_price">
-      <DasType>decimal|0s</DasType>
+    <column id="769" parent="565" name="purchase_date">
+      <DasType>date|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="770" parent="565" name="installation_path">
-      <DasType>varchar(500)|0s</DasType>
+    <column id="770" parent="565" name="purchase_price">
+      <DasType>decimal|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="771" parent="565" name="configuration">
-      <DasType>text|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="771" parent="565" name="installation_path">
+      <DasType>varchar(500)|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="772" parent="565" name="created_at">
-      <DasType>datetime|0s</DasType>
+    <column id="772" parent="565" name="configuration">
+      <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="773" parent="565" name="updated_at">
+    <column id="773" parent="565" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="774" parent="565" name="supplier_id">
-      <DasType>bigint|0s</DasType>
+    <column id="774" parent="565" name="updated_at">
+      <DasType>datetime|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <column id="775" parent="565" name="asset_owner">
-      <DasType>varchar(100)|0s</DasType>
+    <column id="775" parent="565" name="supplier_id">
+      <DasType>bigint|0s</DasType>
       <Position>17</Position>
     </column>
-    <column id="776" parent="565" name="asset_status">
-      <DasType>varchar(20)|0s</DasType>
+    <column id="776" parent="565" name="asset_owner">
+      <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>18</Position>
     </column>
-    <column id="777" parent="565" name="asset_tag">
-      <DasType>varchar(100)|0s</DasType>
+    <column id="777" parent="565" name="asset_status">
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>19</Position>
     </column>
-    <column id="778" parent="565" name="dependencies">
-      <DasType>text|0s</DasType>
+    <column id="778" parent="565" name="asset_tag">
+      <DasType>varchar(100)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>20</Position>
     </column>
-    <column id="779" parent="565" name="deployment_servers">
+    <column id="779" parent="565" name="dependencies">
       <DasType>text|0s</DasType>
       <Position>21</Position>
     </column>
-    <column id="780" parent="565" name="last_update_date">
-      <DasType>date|0s</DasType>
+    <column id="780" parent="565" name="deployment_servers">
+      <DasType>text|0s</DasType>
       <Position>22</Position>
     </column>
-    <column id="781" parent="565" name="license_status">
-      <DasType>varchar(20)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="781" parent="565" name="last_update_date">
+      <DasType>date|0s</DasType>
       <Position>23</Position>
     </column>
-    <column id="782" parent="565" name="license_used">
-      <DasType>integer|0s</DasType>
+    <column id="782" parent="565" name="license_status">
+      <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>24</Position>
     </column>
-    <column id="783" parent="565" name="minimum_requirements">
-      <DasType>text|0s</DasType>
+    <column id="783" parent="565" name="license_used">
+      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>25</Position>
     </column>
-    <column id="784" parent="565" name="project_source">
-      <DasType>varchar(200)|0s</DasType>
+    <column id="784" parent="565" name="minimum_requirements">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>26</Position>
     </column>
-    <column id="785" parent="565" name="supplier_contact">
-      <DasType>varchar(100)|0s</DasType>
+    <column id="785" parent="565" name="project_source">
+      <DasType>varchar(200)|0s</DasType>
       <Position>27</Position>
     </column>
-    <column id="786" parent="565" name="support_end_date">
-      <DasType>date|0s</DasType>
+    <column id="786" parent="565" name="supplier_contact">
+      <DasType>varchar(100)|0s</DasType>
       <Position>28</Position>
     </column>
-    <column id="787" parent="565" name="supported_os">
-      <DasType>varchar(200)|0s</DasType>
+    <column id="787" parent="565" name="support_end_date">
+      <DasType>date|0s</DasType>
       <Position>29</Position>
     </column>
-    <column id="788" parent="565" name="update_frequency">
-      <DasType>varchar(100)|0s</DasType>
+    <column id="788" parent="565" name="supported_os">
+      <DasType>varchar(200)|0s</DasType>
       <Position>30</Position>
     </column>
-    <column id="789" parent="565" name="usage_description">
-      <DasType>text|0s</DasType>
+    <column id="789" parent="565" name="update_frequency">
+      <DasType>varchar(100)|0s</DasType>
       <Position>31</Position>
     </column>
-    <column id="790" parent="565" name="software_type">
-      <DasType>varchar(30)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="790" parent="565" name="usage_description">
+      <DasType>text|0s</DasType>
       <Position>32</Position>
     </column>
-    <foreign-key id="791" parent="565">
+    <column id="791" parent="565" name="warranty_end_date">
+      <DasType>date|0s</DasType>
+      <Position>33</Position>
+    </column>
+    <column id="792" parent="565" name="warranty_start_date">
+      <DasType>date|0s</DasType>
+      <Position>34</Position>
+    </column>
+    <column id="793" parent="565" name="warranty_type">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>35</Position>
+    </column>
+    <column id="794" parent="565" name="warranty_status">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>36</Position>
+    </column>
+    <foreign-key id="795" parent="565">
       <ColNames>supplier_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_supplier</RefTableName>
     </foreign-key>
-    <index id="792" parent="565" name="sqlite_autoindex_assets_softwareasset_1">
+    <index id="796" parent="565" name="sqlite_autoindex_assets_softwareasset_1">
       <ColNames>asset_tag</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="793" parent="565" name="assets_softwareasset_supplier_id_3dcfb7bf">
+    <index id="797" parent="565" name="assets_softwareasset_supplier_id_3dcfb7bf">
       <ColNames>supplier_id</ColNames>
     </index>
-    <key id="794" parent="565">
+    <key id="798" parent="565">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="795" parent="565">
+    <key id="799" parent="565">
       <ColNames>asset_tag</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_assets_softwareasset_1</UnderlyingIndexName>
     </key>
-    <check id="796" parent="566">
+    <check id="800" parent="566">
       <Predicate>(JSON_VALID(&quot;configuration_details&quot;) OR &quot;configuration_details&quot; IS NULL)</Predicate>
     </check>
-    <column id="797" parent="566" name="id">
+    <column id="801" parent="566" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="798" parent="566" name="server_hostname">
+    <column id="802" parent="566" name="server_hostname">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="799" parent="566" name="server_ip">
+    <column id="803" parent="566" name="server_ip">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="800" parent="566" name="deployment_path">
+    <column id="804" parent="566" name="deployment_path">
       <DasType>varchar(500)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="801" parent="566" name="deployment_status">
+    <column id="805" parent="566" name="deployment_status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="802" parent="566" name="deployment_date">
+    <column id="806" parent="566" name="deployment_date">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="803" parent="566" name="deployed_by">
+    <column id="807" parent="566" name="deployed_by">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="804" parent="566" name="configuration_details">
+    <column id="808" parent="566" name="configuration_details">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="805" parent="566" name="remarks">
+    <column id="809" parent="566" name="remarks">
       <DasType>text|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="806" parent="566" name="created_at">
+    <column id="810" parent="566" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="807" parent="566" name="updated_at">
+    <column id="811" parent="566" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="808" parent="566" name="software_asset_id">
+    <column id="812" parent="566" name="software_asset_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <foreign-key id="809" parent="566">
+    <foreign-key id="813" parent="566">
       <ColNames>software_asset_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_softwareasset</RefTableName>
     </foreign-key>
-    <index id="810" parent="566" name="assets_softwaredeployment_software_asset_id_server_hostname_94c90db1_uniq">
+    <index id="814" parent="566" name="assets_softwaredeployment_software_asset_id_server_hostname_94c90db1_uniq">
       <ColNames>software_asset_id
 server_hostname</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="811" parent="566" name="assets_softwaredeployment_software_asset_id_d48f65a8">
+    <index id="815" parent="566" name="assets_softwaredeployment_software_asset_id_d48f65a8">
       <ColNames>software_asset_id</ColNames>
     </index>
-    <key id="812" parent="566">
+    <key id="816" parent="566">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="813" parent="567" name="id">
+    <column id="817" parent="567" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="814" parent="567" name="update_type">
+    <column id="818" parent="567" name="update_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="815" parent="567" name="old_license_type">
+    <column id="819" parent="567" name="old_license_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="816" parent="567" name="old_license_count">
+    <column id="820" parent="567" name="old_license_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="817" parent="567" name="old_license_start_date">
+    <column id="821" parent="567" name="old_license_start_date">
       <DasType>date|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="818" parent="567" name="old_license_end_date">
+    <column id="822" parent="567" name="old_license_end_date">
       <DasType>date|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="819" parent="567" name="new_license_type">
+    <column id="823" parent="567" name="new_license_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="820" parent="567" name="new_license_count">
+    <column id="824" parent="567" name="new_license_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="821" parent="567" name="new_license_start_date">
+    <column id="825" parent="567" name="new_license_start_date">
       <DasType>date|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="822" parent="567" name="new_license_end_date">
+    <column id="826" parent="567" name="new_license_end_date">
       <DasType>date|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="823" parent="567" name="update_cost">
+    <column id="827" parent="567" name="update_cost">
       <DasType>decimal|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="824" parent="567" name="update_time">
+    <column id="828" parent="567" name="update_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="825" parent="567" name="updated_by">
+    <column id="829" parent="567" name="updated_by">
       <DasType>varchar(100)|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="826" parent="567" name="remarks">
+    <column id="830" parent="567" name="remarks">
       <DasType>text|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="827" parent="567" name="software_asset_id">
+    <column id="831" parent="567" name="software_asset_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <foreign-key id="828" parent="567">
+    <foreign-key id="832" parent="567">
       <ColNames>software_asset_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_softwareasset</RefTableName>
     </foreign-key>
-    <index id="829" parent="567" name="assets_softwarelicenseupdaterecord_software_asset_id_a1a8c489">
+    <index id="833" parent="567" name="assets_softwarelicenseupdaterecord_software_asset_id_a1a8c489">
       <ColNames>software_asset_id</ColNames>
     </index>
-    <key id="830" parent="567">
+    <key id="834" parent="567">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="831" parent="568" name="id">
+    <column id="835" parent="568" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="832" parent="568" name="old_version">
+    <column id="836" parent="568" name="old_version">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="833" parent="568" name="new_version">
+    <column id="837" parent="568" name="new_version">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="834" parent="568" name="update_method">
+    <column id="838" parent="568" name="update_method">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="835" parent="568" name="update_time">
+    <column id="839" parent="568" name="update_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="836" parent="568" name="updated_by">
+    <column id="840" parent="568" name="updated_by">
       <DasType>varchar(100)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="837" parent="568" name="update_notes">
+    <column id="841" parent="568" name="update_notes">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="838" parent="568" name="rollback_available">
+    <column id="842" parent="568" name="rollback_available">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="839" parent="568" name="software_asset_id">
+    <column id="843" parent="568" name="software_asset_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <foreign-key id="840" parent="568">
+    <foreign-key id="844" parent="568">
       <ColNames>software_asset_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_softwareasset</RefTableName>
     </foreign-key>
-    <index id="841" parent="568" name="assets_softwareversionupdaterecord_software_asset_id_3a45d155">
+    <index id="845" parent="568" name="assets_softwareversionupdaterecord_software_asset_id_3a45d155">
       <ColNames>software_asset_id</ColNames>
     </index>
-    <key id="842" parent="568">
+    <key id="846" parent="568">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="843" parent="569">
+    <check id="847" parent="569">
       <Predicate>(JSON_VALID(&quot;new_specifications&quot;) OR &quot;new_specifications&quot; IS NULL)</Predicate>
     </check>
-    <check id="844" parent="569">
+    <check id="848" parent="569">
       <Predicate>(JSON_VALID(&quot;old_specifications&quot;) OR &quot;old_specifications&quot; IS NULL)</Predicate>
     </check>
-    <column id="845" parent="569" name="id">
+    <column id="849" parent="569" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="846" parent="569" name="old_specifications">
+    <column id="850" parent="569" name="old_specifications">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="847" parent="569" name="new_specifications">
+    <column id="851" parent="569" name="new_specifications">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="848" parent="569" name="update_method">
+    <column id="852" parent="569" name="update_method">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="849" parent="569" name="update_time">
+    <column id="853" parent="569" name="update_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="850" parent="569" name="updated_by">
+    <column id="854" parent="569" name="updated_by">
       <DasType>varchar(100)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="851" parent="569" name="remarks">
+    <column id="855" parent="569" name="remarks">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="852" parent="569" name="hardware_asset_id">
+    <column id="856" parent="569" name="hardware_asset_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <foreign-key id="853" parent="569">
+    <foreign-key id="857" parent="569">
       <ColNames>hardware_asset_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_hardwareasset</RefTableName>
     </foreign-key>
-    <index id="854" parent="569" name="assets_specificationupdaterecord_hardware_asset_id_548a59aa">
+    <index id="858" parent="569" name="assets_specificationupdaterecord_hardware_asset_id_548a59aa">
       <ColNames>hardware_asset_id</ColNames>
     </index>
-    <key id="855" parent="569">
+    <key id="859" parent="569">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="856" parent="570" name="id">
+    <column id="860" parent="570" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="857" parent="570" name="name">
+    <column id="861" parent="570" name="name">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="858" parent="570" name="contact_person">
+    <column id="862" parent="570" name="contact_person">
       <DasType>varchar(100)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="859" parent="570" name="phone">
+    <column id="863" parent="570" name="phone">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="860" parent="570" name="email">
+    <column id="864" parent="570" name="email">
       <DasType>varchar(254)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="861" parent="570" name="address">
+    <column id="865" parent="570" name="address">
       <DasType>text|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="862" parent="570" name="description">
+    <column id="866" parent="570" name="description">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="863" parent="570" name="is_active">
+    <column id="867" parent="570" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="864" parent="570" name="created_at">
+    <column id="868" parent="570" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="865" parent="570" name="updated_at">
+    <column id="869" parent="570" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <index id="866" parent="570" name="sqlite_autoindex_assets_supplier_1">
+    <index id="870" parent="570" name="sqlite_autoindex_assets_supplier_1">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="867" parent="570">
+    <key id="871" parent="570">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="868" parent="570">
+    <key id="872" parent="570">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_assets_supplier_1</UnderlyingIndexName>
     </key>
-    <column id="869" parent="571" name="id">
+    <column id="873" parent="571" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="870" parent="571" name="old_warranty_type">
+    <column id="874" parent="571" name="old_warranty_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="871" parent="571" name="new_warranty_type">
+    <column id="875" parent="571" name="new_warranty_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="872" parent="571" name="old_warranty_start_date">
+    <column id="876" parent="571" name="old_warranty_start_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="873" parent="571" name="new_warranty_start_date">
+    <column id="877" parent="571" name="new_warranty_start_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="874" parent="571" name="old_warranty_end_date">
+    <column id="878" parent="571" name="old_warranty_end_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="875" parent="571" name="new_warranty_end_date">
+    <column id="879" parent="571" name="new_warranty_end_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="876" parent="571" name="update_time">
+    <column id="880" parent="571" name="update_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="877" parent="571" name="updated_by">
+    <column id="881" parent="571" name="updated_by">
       <DasType>varchar(100)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="878" parent="571" name="remarks">
+    <column id="882" parent="571" name="remarks">
       <DasType>text|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="879" parent="571" name="hardware_asset_id">
+    <column id="883" parent="571" name="hardware_asset_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <foreign-key id="880" parent="571">
+    <foreign-key id="884" parent="571">
       <ColNames>hardware_asset_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>assets_hardwareasset</RefTableName>
     </foreign-key>
-    <index id="881" parent="571" name="assets_warrantyupdaterecord_hardware_asset_id_80f1bb90">
+    <index id="885" parent="571" name="assets_warrantyupdaterecord_hardware_asset_id_80f1bb90">
       <ColNames>hardware_asset_id</ColNames>
     </index>
-    <key id="882" parent="571">
+    <key id="886" parent="571">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="883" parent="572">
+    <check id="887" parent="572">
       <Predicate>(JSON_VALID(&quot;groups&quot;) OR &quot;groups&quot; IS NULL)</Predicate>
     </check>
-    <column id="884" parent="572" name="id">
+    <column id="888" parent="572" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="885" parent="572" name="templateid">
+    <column id="889" parent="572" name="templateid">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="886" parent="572" name="name">
+    <column id="890" parent="572" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="887" parent="572" name="description">
+    <column id="891" parent="572" name="description">
       <DasType>text|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="888" parent="572" name="items_count">
+    <column id="892" parent="572" name="items_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="889" parent="572" name="triggers_count">
+    <column id="893" parent="572" name="triggers_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="890" parent="572" name="macros_count">
+    <column id="894" parent="572" name="macros_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="891" parent="572" name="icon">
+    <column id="895" parent="572" name="icon">
       <DasType>varchar(50)|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="892" parent="572" name="category">
+    <column id="896" parent="572" name="category">
       <DasType>varchar(100)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="893" parent="572" name="groups">
+    <column id="897" parent="572" name="groups">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="894" parent="572" name="created_at">
+    <column id="898" parent="572" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="895" parent="572" name="updated_at">
+    <column id="899" parent="572" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <index id="896" parent="572" name="sqlite_autoindex_assets_zabbixtemplate_1">
+    <index id="900" parent="572" name="sqlite_autoindex_assets_zabbixtemplate_1">
       <ColNames>templateid</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="897" parent="572">
+    <key id="901" parent="572">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="898" parent="572">
+    <key id="902" parent="572">
       <ColNames>templateid</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_assets_zabbixtemplate_1</UnderlyingIndexName>
     </key>
-    <column id="899" parent="573" name="id">
+    <column id="903" parent="573" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="900" parent="573" name="name">
+    <column id="904" parent="573" name="name">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <index id="901" parent="573" name="sqlite_autoindex_auth_group_1">
+    <index id="905" parent="573" name="sqlite_autoindex_auth_group_1">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="902" parent="573">
+    <key id="906" parent="573">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="903" parent="573">
+    <key id="907" parent="573">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_auth_group_1</UnderlyingIndexName>
     </key>
-    <column id="904" parent="574" name="id">
+    <column id="908" parent="574" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="905" parent="574" name="group_id">
+    <column id="909" parent="574" name="group_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="906" parent="574" name="permission_id">
+    <column id="910" parent="574" name="permission_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="907" parent="574">
+    <foreign-key id="911" parent="574">
       <ColNames>group_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>auth_group</RefTableName>
     </foreign-key>
-    <foreign-key id="908" parent="574">
+    <foreign-key id="912" parent="574">
       <ColNames>permission_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>auth_permission</RefTableName>
     </foreign-key>
-    <index id="909" parent="574" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+    <index id="913" parent="574" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="910" parent="574" name="auth_group_permissions_group_id_b120cbf9">
+    <index id="914" parent="574" name="auth_group_permissions_group_id_b120cbf9">
       <ColNames>group_id</ColNames>
     </index>
-    <index id="911" parent="574" name="auth_group_permissions_permission_id_84c5c92e">
+    <index id="915" parent="574" name="auth_group_permissions_permission_id_84c5c92e">
       <ColNames>permission_id</ColNames>
     </index>
-    <key id="912" parent="574">
+    <key id="916" parent="574">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="913" parent="575" name="id">
+    <column id="917" parent="575" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="914" parent="575" name="content_type_id">
+    <column id="918" parent="575" name="content_type_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="915" parent="575" name="codename">
+    <column id="919" parent="575" name="codename">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="916" parent="575" name="name">
+    <column id="920" parent="575" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="917" parent="575">
+    <foreign-key id="921" parent="575">
       <ColNames>content_type_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>django_content_type</RefTableName>
     </foreign-key>
-    <index id="918" parent="575" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+    <index id="922" parent="575" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="919" parent="575" name="auth_permission_content_type_id_2f476e4b">
+    <index id="923" parent="575" name="auth_permission_content_type_id_2f476e4b">
       <ColNames>content_type_id</ColNames>
     </index>
-    <key id="920" parent="575">
+    <key id="924" parent="575">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="921" parent="576" name="key">
+    <column id="925" parent="576" name="key">
       <DasType>varchar(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="922" parent="576" name="created">
+    <column id="926" parent="576" name="created">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="923" parent="576" name="user_id">
+    <column id="927" parent="576" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="924" parent="576">
+    <foreign-key id="928" parent="576">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="925" parent="576" name="sqlite_autoindex_authtoken_token_1">
+    <index id="929" parent="576" name="sqlite_autoindex_authtoken_token_1">
       <ColNames>key</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="926" parent="576" name="sqlite_autoindex_authtoken_token_2">
+    <index id="930" parent="576" name="sqlite_autoindex_authtoken_token_2">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="927" parent="576">
+    <key id="931" parent="576">
       <ColNames>key</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_authtoken_token_1</UnderlyingIndexName>
     </key>
-    <key id="928" parent="576">
+    <key id="932" parent="576">
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_authtoken_token_2</UnderlyingIndexName>
     </key>
-    <column id="929" parent="577" name="id">
+    <column id="933" parent="577" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="930" parent="577" name="name">
+    <column id="934" parent="577" name="name">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="931" parent="577" name="responsible_person">
+    <column id="935" parent="577" name="responsible_person">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="932" parent="577" name="online_date">
+    <column id="936" parent="577" name="online_date">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="933" parent="577" name="access_url">
+    <column id="937" parent="577" name="access_url">
       <DasType>varchar(200)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="934" parent="577" name="description">
+    <column id="938" parent="577" name="description">
       <DasType>text|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="935" parent="577" name="status">
+    <column id="939" parent="577" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="936" parent="577" name="created_at">
+    <column id="940" parent="577" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="937" parent="577" name="updated_at">
+    <column id="941" parent="577" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="938" parent="577" name="function_purpose">
+    <column id="942" parent="577" name="function_purpose">
       <DasType>text|0s</DasType>
       <Position>10</Position>
     </column>
-    <key id="939" parent="577">
+    <key id="943" parent="577">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="940" parent="578" name="id">
+    <column id="944" parent="578" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="941" parent="578" name="ip_address">
+    <column id="945" parent="578" name="ip_address">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="942" parent="578" name="hostname">
+    <column id="946" parent="578" name="hostname">
       <DasType>varchar(200)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="943" parent="578" name="port">
+    <column id="947" parent="578" name="port">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="944" parent="578" name="service_type">
+    <column id="948" parent="578" name="service_type">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="945" parent="578" name="status">
+    <column id="949" parent="578" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="946" parent="578" name="description">
+    <column id="950" parent="578" name="description">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="947" parent="578" name="created_at">
+    <column id="951" parent="578" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="948" parent="578" name="updated_at">
+    <column id="952" parent="578" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="949" parent="578" name="business_id">
+    <column id="953" parent="578" name="business_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <foreign-key id="950" parent="578">
+    <foreign-key id="954" parent="578">
       <ColNames>business_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>business_business</RefTableName>
     </foreign-key>
-    <index id="951" parent="578" name="business_businessip_business_id_ip_address_7d00bbf1_uniq">
+    <index id="955" parent="578" name="business_businessip_business_id_ip_address_7d00bbf1_uniq">
       <ColNames>business_id
 ip_address</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="952" parent="578" name="business_businessip_business_id_1efd1165">
+    <index id="956" parent="578" name="business_businessip_business_id_1efd1165">
       <ColNames>business_id</ColNames>
     </index>
-    <key id="953" parent="578">
+    <key id="957" parent="578">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="954" parent="579" name="id">
+    <column id="958" parent="579" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="955" parent="579" name="year">
+    <column id="959" parent="579" name="year">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="956" parent="579" name="month">
+    <column id="960" parent="579" name="month">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="957" parent="579" name="total_visits">
+    <column id="961" parent="579" name="total_visits">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="958" parent="579" name="unique_visitors">
+    <column id="962" parent="579" name="unique_visitors">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="959" parent="579" name="avg_response_time">
+    <column id="963" parent="579" name="avg_response_time">
       <DasType>real|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="960" parent="579" name="uptime_percentage">
+    <column id="964" parent="579" name="uptime_percentage">
       <DasType>real|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="961" parent="579" name="error_count">
+    <column id="965" parent="579" name="error_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="962" parent="579" name="data_transfer_gb">
+    <column id="966" parent="579" name="data_transfer_gb">
       <DasType>real|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="963" parent="579" name="created_at">
+    <column id="967" parent="579" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="964" parent="579" name="updated_at">
+    <column id="968" parent="579" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="965" parent="579" name="business_id">
+    <column id="969" parent="579" name="business_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <foreign-key id="966" parent="579">
+    <foreign-key id="970" parent="579">
       <ColNames>business_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>business_business</RefTableName>
     </foreign-key>
-    <index id="967" parent="579" name="business_businessmonthlystats_business_id_year_month_8cf41a1f_uniq">
+    <index id="971" parent="579" name="business_businessmonthlystats_business_id_year_month_8cf41a1f_uniq">
       <ColNames>business_id
 year
 month</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="968" parent="579" name="business_businessmonthlystats_business_id_bfe0b96f">
+    <index id="972" parent="579" name="business_businessmonthlystats_business_id_bfe0b96f">
       <ColNames>business_id</ColNames>
     </index>
-    <key id="969" parent="579">
+    <key id="973" parent="579">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="970" parent="580" name="id">
+    <column id="974" parent="580" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="971" parent="580" name="password">
+    <column id="975" parent="580" name="password">
       <DasType>varchar(128)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="972" parent="580" name="last_login">
+    <column id="976" parent="580" name="last_login">
       <DasType>datetime|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="973" parent="580" name="is_superuser">
+    <column id="977" parent="580" name="is_superuser">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="974" parent="580" name="username">
+    <column id="978" parent="580" name="username">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="975" parent="580" name="first_name">
+    <column id="979" parent="580" name="first_name">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="976" parent="580" name="last_name">
+    <column id="980" parent="580" name="last_name">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="977" parent="580" name="is_staff">
+    <column id="981" parent="580" name="is_staff">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="978" parent="580" name="is_active">
+    <column id="982" parent="580" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="979" parent="580" name="date_joined">
+    <column id="983" parent="580" name="date_joined">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="980" parent="580" name="email">
+    <column id="984" parent="580" name="email">
       <DasType>varchar(254)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="981" parent="580" name="phone">
+    <column id="985" parent="580" name="phone">
       <DasType>varchar(11)|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="982" parent="580" name="avatar">
+    <column id="986" parent="580" name="avatar">
       <DasType>varchar(200)|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="983" parent="580" name="created_at">
+    <column id="987" parent="580" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="984" parent="580" name="updated_at">
+    <column id="988" parent="580" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="985" parent="580" name="last_login_ip">
+    <column id="989" parent="580" name="last_login_ip">
       <DasType>char(39)|0s</DasType>
       <Position>16</Position>
     </column>
-    <index id="986" parent="580" name="sqlite_autoindex_custom_user_1">
+    <index id="990" parent="580" name="sqlite_autoindex_custom_user_1">
       <ColNames>username</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="987" parent="580" name="sqlite_autoindex_custom_user_2">
+    <index id="991" parent="580" name="sqlite_autoindex_custom_user_2">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="988" parent="580">
+    <key id="992" parent="580">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="989" parent="580">
+    <key id="993" parent="580">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_custom_user_1</UnderlyingIndexName>
     </key>
-    <key id="990" parent="580">
+    <key id="994" parent="580">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_custom_user_2</UnderlyingIndexName>
     </key>
-    <column id="991" parent="581" name="id">
+    <column id="995" parent="581" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="992" parent="581" name="user_id">
+    <column id="996" parent="581" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="993" parent="581" name="group_id">
+    <column id="997" parent="581" name="group_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="994" parent="581">
+    <foreign-key id="998" parent="581">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <foreign-key id="995" parent="581">
+    <foreign-key id="999" parent="581">
       <ColNames>group_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>auth_group</RefTableName>
     </foreign-key>
-    <index id="996" parent="581" name="custom_user_groups_user_id_group_id_747bb497_uniq">
+    <index id="1000" parent="581" name="custom_user_groups_user_id_group_id_747bb497_uniq">
       <ColNames>user_id
 group_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="997" parent="581" name="custom_user_groups_user_id_fc78735a">
+    <index id="1001" parent="581" name="custom_user_groups_user_id_fc78735a">
       <ColNames>user_id</ColNames>
     </index>
-    <index id="998" parent="581" name="custom_user_groups_group_id_02874f21">
+    <index id="1002" parent="581" name="custom_user_groups_group_id_02874f21">
       <ColNames>group_id</ColNames>
     </index>
-    <key id="999" parent="581">
+    <key id="1003" parent="581">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="1000" parent="582" name="id">
+    <column id="1004" parent="582" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1001" parent="582" name="user_id">
+    <column id="1005" parent="582" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1002" parent="582" name="permission_id">
+    <column id="1006" parent="582" name="permission_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="1003" parent="582">
+    <foreign-key id="1007" parent="582">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <foreign-key id="1004" parent="582">
+    <foreign-key id="1008" parent="582">
       <ColNames>permission_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>auth_permission</RefTableName>
     </foreign-key>
-    <index id="1005" parent="582" name="custom_user_user_permissions_user_id_permission_id_31f85e8f_uniq">
+    <index id="1009" parent="582" name="custom_user_user_permissions_user_id_permission_id_31f85e8f_uniq">
       <ColNames>user_id
 permission_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="1006" parent="582" name="custom_user_user_permissions_user_id_0634b1dc">
+    <index id="1010" parent="582" name="custom_user_user_permissions_user_id_0634b1dc">
       <ColNames>user_id</ColNames>
     </index>
-    <index id="1007" parent="582" name="custom_user_user_permissions_permission_id_f82b5e3f">
+    <index id="1011" parent="582" name="custom_user_user_permissions_permission_id_f82b5e3f">
       <ColNames>permission_id</ColNames>
     </index>
-    <key id="1008" parent="582">
+    <key id="1012" parent="582">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="1009" parent="583">
+    <check id="1013" parent="583">
       <Predicate>&quot;action_flag&quot; &gt;= 0</Predicate>
     </check>
-    <column id="1010" parent="583" name="id">
+    <column id="1014" parent="583" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1011" parent="583" name="object_id">
+    <column id="1015" parent="583" name="object_id">
       <DasType>text|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="1012" parent="583" name="object_repr">
+    <column id="1016" parent="583" name="object_repr">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1013" parent="583" name="action_flag">
+    <column id="1017" parent="583" name="action_flag">
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1014" parent="583" name="change_message">
+    <column id="1018" parent="583" name="change_message">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1015" parent="583" name="content_type_id">
+    <column id="1019" parent="583" name="content_type_id">
       <DasType>integer|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1016" parent="583" name="user_id">
+    <column id="1020" parent="583" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1017" parent="583" name="action_time">
+    <column id="1021" parent="583" name="action_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <foreign-key id="1018" parent="583">
+    <foreign-key id="1022" parent="583">
       <ColNames>content_type_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>django_content_type</RefTableName>
     </foreign-key>
-    <foreign-key id="1019" parent="583">
+    <foreign-key id="1023" parent="583">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1020" parent="583" name="django_admin_log_content_type_id_c4bce8eb">
+    <index id="1024" parent="583" name="django_admin_log_content_type_id_c4bce8eb">
       <ColNames>content_type_id</ColNames>
     </index>
-    <index id="1021" parent="583" name="django_admin_log_user_id_c564eba6">
+    <index id="1025" parent="583" name="django_admin_log_user_id_c564eba6">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="1022" parent="583">
+    <key id="1026" parent="583">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="1023" parent="584" name="id">
+    <column id="1027" parent="584" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1024" parent="584" name="app_label">
+    <column id="1028" parent="584" name="app_label">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1025" parent="584" name="model">
+    <column id="1029" parent="584" name="model">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="1026" parent="584" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <index id="1030" parent="584" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1027" parent="584">
+    <key id="1031" parent="584">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="1028" parent="585" name="id">
+    <column id="1032" parent="585" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1029" parent="585" name="app">
+    <column id="1033" parent="585" name="app">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1030" parent="585" name="name">
+    <column id="1034" parent="585" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1031" parent="585" name="applied">
+    <column id="1035" parent="585" name="applied">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <key id="1032" parent="585">
+    <key id="1036" parent="585">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="1033" parent="586" name="session_key">
+    <column id="1037" parent="586" name="session_key">
       <DasType>varchar(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1034" parent="586" name="session_data">
+    <column id="1038" parent="586" name="session_data">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1035" parent="586" name="expire_date">
+    <column id="1039" parent="586" name="expire_date">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="1036" parent="586" name="sqlite_autoindex_django_session_1">
+    <index id="1040" parent="586" name="sqlite_autoindex_django_session_1">
       <ColNames>session_key</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1037" parent="586" name="django_session_expire_date_a5c62663">
+    <index id="1041" parent="586" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
     </index>
-    <key id="1038" parent="586">
+    <key id="1042" parent="586">
       <ColNames>session_key</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_django_session_1</UnderlyingIndexName>
     </key>
-    <column id="1039" parent="587" name="id">
+    <column id="1043" parent="587" name="id">
       <DasType>char(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1040" parent="587" name="ip_address">
+    <column id="1044" parent="587" name="ip_address">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1041" parent="587" name="hostname">
+    <column id="1045" parent="587" name="hostname">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1042" parent="587" name="status">
+    <column id="1046" parent="587" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1043" parent="587" name="type">
+    <column id="1047" parent="587" name="type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1044" parent="587" name="mac_address">
+    <column id="1048" parent="587" name="mac_address">
       <DasType>varchar(17)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1045" parent="587" name="device">
+    <column id="1049" parent="587" name="device">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="1046" parent="587" name="subnet">
+    <column id="1050" parent="587" name="subnet">
       <DasType>varchar(50)|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="1047" parent="587" name="description">
+    <column id="1051" parent="587" name="description">
       <DasType>text|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="1048" parent="587" name="ping_status">
+    <column id="1052" parent="587" name="ping_status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="1049" parent="587" name="last_seen">
+    <column id="1053" parent="587" name="last_seen">
       <DasType>datetime|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="1050" parent="587" name="created_at">
+    <column id="1054" parent="587" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="1051" parent="587" name="updated_at">
+    <column id="1055" parent="587" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="1052" parent="587" name="created_by_id">
+    <column id="1056" parent="587" name="created_by_id">
       <DasType>bigint|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="1053" parent="587" name="is_auto_discovered">
+    <column id="1057" parent="587" name="is_auto_discovered">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="1054" parent="587" name="zabbix_drule_id">
+    <column id="1058" parent="587" name="zabbix_drule_id">
       <DasType>varchar(50)|0s</DasType>
       <Position>16</Position>
     </column>
-    <column id="1055" parent="587" name="monitoring_enabled">
+    <column id="1059" parent="587" name="monitoring_enabled">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>17</Position>
     </column>
-    <foreign-key id="1056" parent="587">
+    <foreign-key id="1060" parent="587">
       <ColNames>created_by_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1057" parent="587" name="sqlite_autoindex_ip_records_1">
+    <index id="1061" parent="587" name="sqlite_autoindex_ip_records_1">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1058" parent="587" name="sqlite_autoindex_ip_records_2">
+    <index id="1062" parent="587" name="sqlite_autoindex_ip_records_2">
       <ColNames>ip_address</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1059" parent="587" name="ip_records_created_by_id_0227eb28">
+    <index id="1063" parent="587" name="ip_records_created_by_id_0227eb28">
       <ColNames>created_by_id</ColNames>
     </index>
-    <key id="1060" parent="587">
+    <key id="1064" parent="587">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_ip_records_1</UnderlyingIndexName>
     </key>
-    <key id="1061" parent="587">
+    <key id="1065" parent="587">
       <ColNames>ip_address</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_ip_records_2</UnderlyingIndexName>
     </key>
-    <column id="1062" parent="588" name="id">
+    <column id="1066" parent="588" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1063" parent="588" name="name">
+    <column id="1067" parent="588" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1064" parent="588" name="title">
+    <column id="1068" parent="588" name="title">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1065" parent="588" name="path">
+    <column id="1069" parent="588" name="path">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1066" parent="588" name="component">
+    <column id="1070" parent="588" name="component">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1067" parent="588" name="icon">
+    <column id="1071" parent="588" name="icon">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1068" parent="588" name="menu_type">
+    <column id="1072" parent="588" name="menu_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1069" parent="588" name="order_num">
+    <column id="1073" parent="588" name="order_num">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1070" parent="588" name="is_hidden">
+    <column id="1074" parent="588" name="is_hidden">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1071" parent="588" name="is_cache">
+    <column id="1075" parent="588" name="is_cache">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="1072" parent="588" name="is_affix">
+    <column id="1076" parent="588" name="is_affix">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="1073" parent="588" name="target">
+    <column id="1077" parent="588" name="target">
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="1074" parent="588" name="redirect">
+    <column id="1078" parent="588" name="redirect">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="1075" parent="588" name="permission_code">
+    <column id="1079" parent="588" name="permission_code">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="1076" parent="588" name="is_active">
+    <column id="1080" parent="588" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="1077" parent="588" name="created_at">
+    <column id="1081" parent="588" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <column id="1078" parent="588" name="updated_at">
+    <column id="1082" parent="588" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>17</Position>
     </column>
-    <column id="1079" parent="588" name="parent_id">
+    <column id="1083" parent="588" name="parent_id">
       <DasType>bigint|0s</DasType>
       <Position>18</Position>
     </column>
-    <foreign-key id="1080" parent="588">
+    <foreign-key id="1084" parent="588">
       <ColNames>parent_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>menu_management</RefTableName>
     </foreign-key>
-    <index id="1081" parent="588" name="menu_manage_order_n_66edaf_idx">
+    <index id="1085" parent="588" name="menu_manage_order_n_66edaf_idx">
       <ColNames>order_num</ColNames>
     </index>
-    <index id="1082" parent="588" name="menu_manage_permiss_63d8b9_idx">
+    <index id="1086" parent="588" name="menu_manage_permiss_63d8b9_idx">
       <ColNames>permission_code</ColNames>
     </index>
-    <index id="1083" parent="588" name="menu_manage_parent__1759d9_idx">
+    <index id="1087" parent="588" name="menu_manage_parent__1759d9_idx">
       <ColNames>parent_id
 is_active</ColNames>
     </index>
-    <index id="1084" parent="588" name="menu_management_parent_id_ea9fbcd5">
+    <index id="1088" parent="588" name="menu_management_parent_id_ea9fbcd5">
       <ColNames>parent_id</ColNames>
     </index>
-    <key id="1085" parent="588">
+    <key id="1089" parent="588">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="1086" parent="589" name="id">
+    <column id="1090" parent="589" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1087" parent="589" name="name">
+    <column id="1091" parent="589" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1088" parent="589" name="code">
+    <column id="1092" parent="589" name="code">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1089" parent="589" name="description">
+    <column id="1093" parent="589" name="description">
       <DasType>text|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="1090" parent="589" name="level">
+    <column id="1094" parent="589" name="level">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1091" parent="589" name="sort_order">
+    <column id="1095" parent="589" name="sort_order">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1092" parent="589" name="status">
+    <column id="1096" parent="589" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1093" parent="589" name="created_at">
+    <column id="1097" parent="589" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1094" parent="589" name="updated_at">
+    <column id="1098" parent="589" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1095" parent="589" name="manager_id">
+    <column id="1099" parent="589" name="manager_id">
       <DasType>bigint|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="1096" parent="589" name="parent_id">
+    <column id="1100" parent="589" name="parent_id">
       <DasType>bigint|0s</DasType>
       <Position>11</Position>
     </column>
-    <foreign-key id="1097" parent="589">
+    <foreign-key id="1101" parent="589">
       <ColNames>manager_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <foreign-key id="1098" parent="589">
+    <foreign-key id="1102" parent="589">
       <ColNames>parent_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>organization_department</RefTableName>
     </foreign-key>
-    <index id="1099" parent="589" name="sqlite_autoindex_organization_department_1">
+    <index id="1103" parent="589" name="sqlite_autoindex_organization_department_1">
       <ColNames>code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1100" parent="589" name="organization_department_manager_id_f23944a1">
+    <index id="1104" parent="589" name="organization_department_manager_id_f23944a1">
       <ColNames>manager_id</ColNames>
     </index>
-    <index id="1101" parent="589" name="organization_department_parent_id_26506ab2">
+    <index id="1105" parent="589" name="organization_department_parent_id_26506ab2">
       <ColNames>parent_id</ColNames>
     </index>
-    <key id="1102" parent="589">
+    <key id="1106" parent="589">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1103" parent="589">
+    <key id="1107" parent="589">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_organization_department_1</UnderlyingIndexName>
     </key>
-    <column id="1104" parent="590" name="id">
+    <column id="1108" parent="590" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1105" parent="590" name="employee_id">
+    <column id="1109" parent="590" name="employee_id">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1106" parent="590" name="phone">
+    <column id="1110" parent="590" name="phone">
       <DasType>varchar(20)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1107" parent="590" name="mobile">
+    <column id="1111" parent="590" name="mobile">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="1108" parent="590" name="office_location">
+    <column id="1112" parent="590" name="office_location">
       <DasType>varchar(200)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1109" parent="590" name="hire_date">
+    <column id="1113" parent="590" name="hire_date">
       <DasType>date|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1110" parent="590" name="probation_end_date">
+    <column id="1114" parent="590" name="probation_end_date">
       <DasType>date|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="1111" parent="590" name="contract_type">
+    <column id="1115" parent="590" name="contract_type">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1112" parent="590" name="employment_status">
+    <column id="1116" parent="590" name="employment_status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1113" parent="590" name="emergency_contact_name">
+    <column id="1117" parent="590" name="emergency_contact_name">
       <DasType>varchar(100)|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="1114" parent="590" name="emergency_contact_phone">
+    <column id="1118" parent="590" name="emergency_contact_phone">
       <DasType>varchar(20)|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="1115" parent="590" name="notes">
+    <column id="1119" parent="590" name="notes">
       <DasType>text|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="1116" parent="590" name="created_at">
+    <column id="1120" parent="590" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="1117" parent="590" name="updated_at">
+    <column id="1121" parent="590" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="1118" parent="590" name="department_id">
+    <column id="1122" parent="590" name="department_id">
       <DasType>bigint|0s</DasType>
       <Position>15</Position>
     </column>
-    <column id="1119" parent="590" name="position_id">
+    <column id="1123" parent="590" name="position_id">
       <DasType>bigint|0s</DasType>
       <Position>16</Position>
     </column>
-    <column id="1120" parent="590" name="user_id">
+    <column id="1124" parent="590" name="user_id">
       <DasType>bigint|0s</DasType>
       <Position>17</Position>
     </column>
-    <column id="1121" parent="590" name="name">
+    <column id="1125" parent="590" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>18</Position>
     </column>
-    <column id="1122" parent="590" name="salary">
+    <column id="1126" parent="590" name="salary">
       <DasType>decimal|0s</DasType>
       <Position>19</Position>
     </column>
-    <column id="1123" parent="590" name="sort_order">
+    <column id="1127" parent="590" name="sort_order">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>20</Position>
     </column>
-    <column id="1124" parent="590" name="direct_supervisor_id">
+    <column id="1128" parent="590" name="direct_supervisor_id">
       <DasType>bigint|0s</DasType>
       <Position>21</Position>
     </column>
-    <column id="1125" parent="590" name="email">
+    <column id="1129" parent="590" name="email">
       <DasType>varchar(254)|0s</DasType>
       <Position>22</Position>
     </column>
-    <foreign-key id="1126" parent="590">
+    <foreign-key id="1130" parent="590">
       <ColNames>department_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>organization_department</RefTableName>
     </foreign-key>
-    <foreign-key id="1127" parent="590">
+    <foreign-key id="1131" parent="590">
       <ColNames>position_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>organization_position</RefTableName>
     </foreign-key>
-    <foreign-key id="1128" parent="590">
+    <foreign-key id="1132" parent="590">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <foreign-key id="1129" parent="590">
+    <foreign-key id="1133" parent="590">
       <ColNames>direct_supervisor_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>organization_employee</RefTableName>
     </foreign-key>
-    <index id="1130" parent="590" name="sqlite_autoindex_organization_employee_1">
+    <index id="1134" parent="590" name="sqlite_autoindex_organization_employee_1">
       <ColNames>employee_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1131" parent="590" name="sqlite_autoindex_organization_employee_2">
+    <index id="1135" parent="590" name="sqlite_autoindex_organization_employee_2">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1132" parent="590" name="organization_employee_department_id_67cc102e">
+    <index id="1136" parent="590" name="organization_employee_department_id_67cc102e">
       <ColNames>department_id</ColNames>
     </index>
-    <index id="1133" parent="590" name="organization_employee_position_id_8a8ae64e">
+    <index id="1137" parent="590" name="organization_employee_position_id_8a8ae64e">
       <ColNames>position_id</ColNames>
     </index>
-    <index id="1134" parent="590" name="organization_employee_direct_supervisor_id_6e0cf988">
+    <index id="1138" parent="590" name="organization_employee_direct_supervisor_id_6e0cf988">
       <ColNames>direct_supervisor_id</ColNames>
     </index>
-    <key id="1135" parent="590">
+    <key id="1139" parent="590">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1136" parent="590">
+    <key id="1140" parent="590">
       <ColNames>employee_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_organization_employee_1</UnderlyingIndexName>
     </key>
-    <key id="1137" parent="590">
+    <key id="1141" parent="590">
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_organization_employee_2</UnderlyingIndexName>
     </key>
-    <column id="1138" parent="591" name="id">
+    <column id="1142" parent="591" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1139" parent="591" name="name">
+    <column id="1143" parent="591" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1140" parent="591" name="code">
+    <column id="1144" parent="591" name="code">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1141" parent="591" name="level">
+    <column id="1145" parent="591" name="level">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1142" parent="591" name="description">
+    <column id="1146" parent="591" name="description">
       <DasType>text|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1143" parent="591" name="responsibilities">
+    <column id="1147" parent="591" name="responsibilities">
       <DasType>text|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1144" parent="591" name="requirements">
+    <column id="1148" parent="591" name="requirements">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="1145" parent="591" name="salary_range_min">
+    <column id="1149" parent="591" name="salary_range_min">
       <DasType>decimal|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="1146" parent="591" name="salary_range_max">
+    <column id="1150" parent="591" name="salary_range_max">
       <DasType>decimal|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="1147" parent="591" name="status">
+    <column id="1151" parent="591" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="1148" parent="591" name="created_at">
+    <column id="1152" parent="591" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="1149" parent="591" name="updated_at">
+    <column id="1153" parent="591" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="1150" parent="591" name="department_id">
+    <column id="1154" parent="591" name="department_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <foreign-key id="1151" parent="591">
+    <foreign-key id="1155" parent="591">
       <ColNames>department_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>organization_department</RefTableName>
     </foreign-key>
-    <index id="1152" parent="591" name="sqlite_autoindex_organization_position_1">
+    <index id="1156" parent="591" name="sqlite_autoindex_organization_position_1">
       <ColNames>code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1153" parent="591" name="organization_position_department_id_e5510bac">
+    <index id="1157" parent="591" name="organization_position_department_id_e5510bac">
       <ColNames>department_id</ColNames>
     </index>
-    <key id="1154" parent="591">
+    <key id="1158" parent="591">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1155" parent="591">
+    <key id="1159" parent="591">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_organization_position_1</UnderlyingIndexName>
     </key>
-    <check id="1156" parent="592">
+    <check id="1160" parent="592">
       <Predicate>(JSON_VALID(&quot;service_info&quot;) OR &quot;service_info&quot; IS NULL)</Predicate>
     </check>
-    <column id="1157" parent="592" name="id">
+    <column id="1161" parent="592" name="id">
       <DasType>char(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1158" parent="592" name="ip_address">
+    <column id="1162" parent="592" name="ip_address">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1159" parent="592" name="hostname">
+    <column id="1163" parent="592" name="hostname">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1160" parent="592" name="mac_address">
+    <column id="1164" parent="592" name="mac_address">
       <DasType>varchar(17)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="1161" parent="592" name="status">
+    <column id="1165" parent="592" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1162" parent="592" name="response_time">
+    <column id="1166" parent="592" name="response_time">
       <DasType>real|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1163" parent="592" name="service_info">
+    <column id="1167" parent="592" name="service_info">
       <DasType>text|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="1164" parent="592" name="created_at">
+    <column id="1168" parent="592" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1165" parent="592" name="scan_task_id">
+    <column id="1169" parent="592" name="scan_task_id">
       <DasType>char(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <foreign-key id="1166" parent="592">
+    <foreign-key id="1170" parent="592">
       <ColNames>scan_task_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>scan_tasks</RefTableName>
     </foreign-key>
-    <index id="1167" parent="592" name="sqlite_autoindex_scan_results_1">
+    <index id="1171" parent="592" name="sqlite_autoindex_scan_results_1">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1168" parent="592" name="scan_results_scan_task_id_ip_address_ab3bba76_uniq">
+    <index id="1172" parent="592" name="scan_results_scan_task_id_ip_address_ab3bba76_uniq">
       <ColNames>scan_task_id
 ip_address</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="1169" parent="592" name="scan_results_scan_task_id_78804503">
+    <index id="1173" parent="592" name="scan_results_scan_task_id_78804503">
       <ColNames>scan_task_id</ColNames>
     </index>
-    <key id="1170" parent="592">
+    <key id="1174" parent="592">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_scan_results_1</UnderlyingIndexName>
     </key>
-    <check id="1171" parent="593">
+    <check id="1175" parent="593">
       <Predicate>(JSON_VALID(&quot;ip_ranges&quot;) OR &quot;ip_ranges&quot; IS NULL)</Predicate>
     </check>
-    <check id="1172" parent="593">
+    <check id="1176" parent="593">
       <Predicate>(JSON_VALID(&quot;result_data&quot;) OR &quot;result_data&quot; IS NULL)</Predicate>
     </check>
-    <check id="1173" parent="593">
+    <check id="1177" parent="593">
       <Predicate>(JSON_VALID(&quot;snmpv3_config&quot;) OR &quot;snmpv3_config&quot; IS NULL)</Predicate>
     </check>
-    <column id="1174" parent="593" name="id">
+    <column id="1178" parent="593" name="id">
       <DasType>char(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1175" parent="593" name="task_name">
+    <column id="1179" parent="593" name="task_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1176" parent="593" name="ip_ranges">
+    <column id="1180" parent="593" name="ip_ranges">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1177" parent="593" name="check_type">
+    <column id="1181" parent="593" name="check_type">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1178" parent="593" name="ports">
+    <column id="1182" parent="593" name="ports">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1179" parent="593" name="key">
+    <column id="1183" parent="593" name="key">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="1180" parent="593" name="snmp_community">
+    <column id="1184" parent="593" name="snmp_community">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="1181" parent="593" name="snmpv3_config">
+    <column id="1185" parent="593" name="snmpv3_config">
       <DasType>text|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="1182" parent="593" name="unique_check">
+    <column id="1186" parent="593" name="unique_check">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1183" parent="593" name="host_source">
+    <column id="1187" parent="593" name="host_source">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="1184" parent="593" name="name_source">
+    <column id="1188" parent="593" name="name_source">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="1185" parent="593" name="status">
+    <column id="1189" parent="593" name="status">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="1186" parent="593" name="progress">
+    <column id="1190" parent="593" name="progress">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="1187" parent="593" name="result_data">
+    <column id="1191" parent="593" name="result_data">
       <DasType>text|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="1188" parent="593" name="error_message">
+    <column id="1192" parent="593" name="error_message">
       <DasType>text|0s</DasType>
       <Position>15</Position>
     </column>
-    <column id="1189" parent="593" name="zabbix_drule_id">
+    <column id="1193" parent="593" name="zabbix_drule_id">
       <DasType>varchar(50)|0s</DasType>
       <Position>16</Position>
     </column>
-    <column id="1190" parent="593" name="zabbix_task_id">
+    <column id="1194" parent="593" name="zabbix_task_id">
       <DasType>varchar(50)|0s</DasType>
       <Position>17</Position>
     </column>
-    <column id="1191" parent="593" name="created_at">
+    <column id="1195" parent="593" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>18</Position>
     </column>
-    <column id="1192" parent="593" name="started_at">
+    <column id="1196" parent="593" name="started_at">
       <DasType>datetime|0s</DasType>
       <Position>19</Position>
     </column>
-    <column id="1193" parent="593" name="completed_at">
+    <column id="1197" parent="593" name="completed_at">
       <DasType>datetime|0s</DasType>
       <Position>20</Position>
     </column>
-    <column id="1194" parent="593" name="created_by_id">
+    <column id="1198" parent="593" name="created_by_id">
       <DasType>bigint|0s</DasType>
       <Position>21</Position>
     </column>
-    <foreign-key id="1195" parent="593">
+    <foreign-key id="1199" parent="593">
       <ColNames>created_by_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1196" parent="593" name="sqlite_autoindex_scan_tasks_1">
+    <index id="1200" parent="593" name="sqlite_autoindex_scan_tasks_1">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1197" parent="593" name="scan_tasks_created_by_id_1eb055e7">
+    <index id="1201" parent="593" name="scan_tasks_created_by_id_1eb055e7">
       <ColNames>created_by_id</ColNames>
     </index>
-    <key id="1198" parent="593">
+    <key id="1202" parent="593">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_scan_tasks_1</UnderlyingIndexName>
     </key>
-    <column id="1199" parent="594" name="type">
+    <column id="1203" parent="594" name="type">
       <DasType>TEXT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="1200" parent="594" name="name">
+    <column id="1204" parent="594" name="name">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="1201" parent="594" name="tbl_name">
+    <column id="1205" parent="594" name="tbl_name">
       <DasType>TEXT|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1202" parent="594" name="rootpage">
+    <column id="1206" parent="594" name="rootpage">
       <DasType>INT|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="1203" parent="594" name="sql">
+    <column id="1207" parent="594" name="sql">
       <DasType>TEXT|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1204" parent="595" name="name">
+    <column id="1208" parent="595" name="name">
       <Position>1</Position>
     </column>
-    <column id="1205" parent="595" name="seq">
+    <column id="1209" parent="595" name="seq">
       <Position>2</Position>
     </column>
-    <column id="1206" parent="596" name="id">
+    <column id="1210" parent="596" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1207" parent="596" name="ip_address">
+    <column id="1211" parent="596" name="ip_address">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1208" parent="596" name="user_agent">
+    <column id="1212" parent="596" name="user_agent">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1209" parent="596" name="login_time">
+    <column id="1213" parent="596" name="login_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1210" parent="596" name="logout_time">
+    <column id="1214" parent="596" name="logout_time">
       <DasType>datetime|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1211" parent="596" name="is_success">
+    <column id="1215" parent="596" name="is_success">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1212" parent="596" name="failure_reason">
+    <column id="1216" parent="596" name="failure_reason">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1213" parent="596" name="user_id">
+    <column id="1217" parent="596" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <foreign-key id="1214" parent="596">
+    <foreign-key id="1218" parent="596">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1215" parent="596" name="user_login_log_user_id_f16491aa">
+    <index id="1219" parent="596" name="user_login_log_user_id_f16491aa">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="1216" parent="596">
+    <key id="1220" parent="596">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="1217" parent="597">
+    <check id="1221" parent="597">
       <Predicate>(JSON_VALID(&quot;collapsed_menus&quot;) OR &quot;collapsed_menus&quot; IS NULL)</Predicate>
     </check>
-    <check id="1218" parent="597">
+    <check id="1222" parent="597">
       <Predicate>(JSON_VALID(&quot;custom_order&quot;) OR &quot;custom_order&quot; IS NULL)</Predicate>
     </check>
-    <check id="1219" parent="597">
+    <check id="1223" parent="597">
       <Predicate>(JSON_VALID(&quot;pinned_menus&quot;) OR &quot;pinned_menus&quot; IS NULL)</Predicate>
     </check>
-    <check id="1220" parent="597">
+    <check id="1224" parent="597">
       <Predicate>(JSON_VALID(&quot;theme_config&quot;) OR &quot;theme_config&quot; IS NULL)</Predicate>
     </check>
-    <column id="1221" parent="597" name="id">
+    <column id="1225" parent="597" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1222" parent="597" name="collapsed_menus">
+    <column id="1226" parent="597" name="collapsed_menus">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1223" parent="597" name="pinned_menus">
+    <column id="1227" parent="597" name="pinned_menus">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1224" parent="597" name="custom_order">
+    <column id="1228" parent="597" name="custom_order">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1225" parent="597" name="theme_config">
+    <column id="1229" parent="597" name="theme_config">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1226" parent="597" name="updated_at">
+    <column id="1230" parent="597" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1227" parent="597" name="user_id">
+    <column id="1231" parent="597" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <foreign-key id="1228" parent="597">
+    <foreign-key id="1232" parent="597">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1229" parent="597" name="sqlite_autoindex_user_menu_config_1">
+    <index id="1233" parent="597" name="sqlite_autoindex_user_menu_config_1">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="1230" parent="597">
+    <key id="1234" parent="597">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1231" parent="597">
+    <key id="1235" parent="597">
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_menu_config_1</UnderlyingIndexName>
     </key>
-    <column id="1232" parent="598" name="id">
+    <column id="1236" parent="598" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1233" parent="598" name="name">
+    <column id="1237" parent="598" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1234" parent="598" name="code">
+    <column id="1238" parent="598" name="code">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1235" parent="598" name="description">
+    <column id="1239" parent="598" name="description">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1236" parent="598" name="icon">
+    <column id="1240" parent="598" name="icon">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1237" parent="598" name="url">
+    <column id="1241" parent="598" name="url">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1238" parent="598" name="order">
+    <column id="1242" parent="598" name="order">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1239" parent="598" name="is_active">
+    <column id="1243" parent="598" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1240" parent="598" name="created_at">
+    <column id="1244" parent="598" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1241" parent="598" name="parent_id">
+    <column id="1245" parent="598" name="parent_id">
       <DasType>bigint|0s</DasType>
       <Position>10</Position>
     </column>
-    <foreign-key id="1242" parent="598">
+    <foreign-key id="1246" parent="598">
       <ColNames>parent_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>user_permission</RefTableName>
     </foreign-key>
-    <index id="1243" parent="598" name="sqlite_autoindex_user_permission_1">
+    <index id="1247" parent="598" name="sqlite_autoindex_user_permission_1">
       <ColNames>code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1244" parent="598" name="user_permission_parent_id_7dee3b63">
+    <index id="1248" parent="598" name="user_permission_parent_id_7dee3b63">
       <ColNames>parent_id</ColNames>
     </index>
-    <key id="1245" parent="598">
+    <key id="1249" parent="598">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1246" parent="598">
+    <key id="1250" parent="598">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_permission_1</UnderlyingIndexName>
     </key>
-    <column id="1247" parent="599" name="id">
+    <column id="1251" parent="599" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1248" parent="599" name="real_name">
+    <column id="1252" parent="599" name="real_name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1249" parent="599" name="department">
+    <column id="1253" parent="599" name="department">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1250" parent="599" name="role">
+    <column id="1254" parent="599" name="role">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1251" parent="599" name="is_active">
+    <column id="1255" parent="599" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1252" parent="599" name="login_count">
+    <column id="1256" parent="599" name="login_count">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1253" parent="599" name="last_activity">
+    <column id="1257" parent="599" name="last_activity">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1254" parent="599" name="user_id">
+    <column id="1258" parent="599" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <foreign-key id="1255" parent="599">
+    <foreign-key id="1259" parent="599">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1256" parent="599" name="sqlite_autoindex_user_profile_1">
+    <index id="1260" parent="599" name="sqlite_autoindex_user_profile_1">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="1257" parent="599">
+    <key id="1261" parent="599">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1258" parent="599">
+    <key id="1262" parent="599">
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_profile_1</UnderlyingIndexName>
     </key>
-    <check id="1259" parent="600">
+    <check id="1263" parent="600">
       <Predicate>(JSON_VALID(&quot;permissions&quot;) OR &quot;permissions&quot; IS NULL)</Predicate>
     </check>
-    <column id="1260" parent="600" name="id">
+    <column id="1264" parent="600" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1261" parent="600" name="name">
+    <column id="1265" parent="600" name="name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1262" parent="600" name="code">
+    <column id="1266" parent="600" name="code">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1263" parent="600" name="description">
+    <column id="1267" parent="600" name="description">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1264" parent="600" name="permissions">
+    <column id="1268" parent="600" name="permissions">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1265" parent="600" name="is_active">
+    <column id="1269" parent="600" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1266" parent="600" name="created_at">
+    <column id="1270" parent="600" name="created_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1267" parent="600" name="updated_at">
+    <column id="1271" parent="600" name="updated_at">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <index id="1268" parent="600" name="sqlite_autoindex_user_role_1">
+    <index id="1272" parent="600" name="sqlite_autoindex_user_role_1">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1269" parent="600" name="sqlite_autoindex_user_role_2">
+    <index id="1273" parent="600" name="sqlite_autoindex_user_role_2">
       <ColNames>code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="1270" parent="600">
+    <key id="1274" parent="600">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1271" parent="600">
+    <key id="1275" parent="600">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_role_1</UnderlyingIndexName>
     </key>
-    <key id="1272" parent="600">
+    <key id="1276" parent="600">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_role_2</UnderlyingIndexName>
     </key>
-    <check id="1273" parent="601">
+    <check id="1277" parent="601">
       <Predicate>(JSON_VALID(&quot;websocket_channels&quot;) OR &quot;websocket_channels&quot; IS NULL)</Predicate>
     </check>
-    <column id="1274" parent="601" name="id">
+    <column id="1278" parent="601" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1275" parent="601" name="session_key">
+    <column id="1279" parent="601" name="session_key">
       <DasType>varchar(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="1276" parent="601" name="ip_address">
+    <column id="1280" parent="601" name="ip_address">
       <DasType>char(39)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="1277" parent="601" name="user_agent">
+    <column id="1281" parent="601" name="user_agent">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="1278" parent="601" name="device_info">
+    <column id="1282" parent="601" name="device_info">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="1279" parent="601" name="login_time">
+    <column id="1283" parent="601" name="login_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="1280" parent="601" name="last_activity">
+    <column id="1284" parent="601" name="last_activity">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="1281" parent="601" name="is_active">
+    <column id="1285" parent="601" name="is_active">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="1282" parent="601" name="logout_reason">
+    <column id="1286" parent="601" name="logout_reason">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="1283" parent="601" name="user_id">
+    <column id="1287" parent="601" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="1284" parent="601" name="has_websocket">
+    <column id="1288" parent="601" name="has_websocket">
       <DasType>bool|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="1285" parent="601" name="websocket_channels">
+    <column id="1289" parent="601" name="websocket_channels">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <foreign-key id="1286" parent="601">
+    <foreign-key id="1290" parent="601">
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefColNames>id</RefColNames>
       <RefTableName>custom_user</RefTableName>
     </foreign-key>
-    <index id="1287" parent="601" name="sqlite_autoindex_user_session_1">
+    <index id="1291" parent="601" name="sqlite_autoindex_user_session_1">
       <ColNames>session_key</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="1288" parent="601" name="user_sessio_session_ab559f_idx">
+    <index id="1292" parent="601" name="user_sessio_session_ab559f_idx">
       <ColNames>session_key</ColNames>
     </index>
-    <index id="1289" parent="601" name="user_sessio_last_ac_e10a79_idx">
+    <index id="1293" parent="601" name="user_sessio_last_ac_e10a79_idx">
       <ColNames>last_activity</ColNames>
     </index>
-    <index id="1290" parent="601" name="user_sessio_user_id_4f7411_idx">
+    <index id="1294" parent="601" name="user_sessio_user_id_4f7411_idx">
       <ColNames>user_id
 is_active</ColNames>
     </index>
-    <index id="1291" parent="601" name="user_session_user_id_babcef0a">
+    <index id="1295" parent="601" name="user_session_user_id_babcef0a">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="1292" parent="601">
+    <key id="1296" parent="601">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="1293" parent="601">
+    <key id="1297" parent="601">
       <ColNames>session_key</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_user_session_1</UnderlyingIndexName>
     </key>
