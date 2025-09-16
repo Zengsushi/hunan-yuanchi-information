@@ -44,9 +44,9 @@
               </a-form-item>
             </a-col>
             <a-col :span="12">
-              <a-form-item label="型号" name="model" class="form-item">
+              <a-form-item label="型号" name="software_type" class="form-item">
                 <a-input 
-                  v-model:value="formData.model" 
+                  v-model:value="formData.software_type" 
                   placeholder="请输入设施型号"
                   :maxlength="100"
                   show-count
@@ -124,9 +124,9 @@
           
           <a-row :gutter="24">            
             <a-col :span="12">
-                <a-form-item label="制造商" name="manufacturer" class="form-item">
+                <a-form-item label="制造商" name="vendor" class="form-item">
                 <a-select
-                  v-model:value="formData.manufacturer"
+                  v-model:value="formData.vendor"
                   placeholder="请选择制造商"
                   show-search
                   :filter-option="false"
@@ -146,9 +146,9 @@
               </a-form-item>
             </a-col>
             <a-col :span="12">
-              <a-form-item label="序列号" name="serial_number" class="form-item">
+              <a-form-item label="序列号" name="license_key" class="form-item">
                 <a-input 
-                  v-model:value="formData.serial_number" 
+                  v-model:value="formData.license_key" 
                   placeholder="请输入序列号"
                   :maxlength="100"
                   show-count
@@ -201,6 +201,35 @@
             </a-col>
           </a-row>
         </div>
+        <!-- 状态信息 -->
+        <div class="form-section product-info"  v-if="isEdit">
+        <h4 class="section-title">状态信息</h4>
+          <a-row :gutter="24">            
+            <a-col :span="12">
+               <a-form-item label="软件状态" name="warranty_type" class="form-item">
+                <a-select
+                  v-model:value="formData.asset_status"
+                  placeholder="请选择保修类型"
+                  show-search
+                  :filter-option="false"
+                  :loading="userLoading"
+                  @search="searchUsers"
+                  @focus="loadUsers"
+                >
+                  <a-select-option
+                    v-for="user in assetStatus"
+                    :key="user.id"
+                    :value="user.value"
+                    :label="user.label"
+                  >
+                    {{ user.label }}
+                  </a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+          </a-row>
+        </div>
+
     </a-form>
     
     <!-- 底部按钮 -->
@@ -221,7 +250,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, watch, nextTick, onMounted } from 'vue'
+import { ref, reactive, computed, watch, nextTick, onMounted , onBeforeMount } from 'vue'
 import { message } from 'ant-design-vue'
 import dayjs from 'dayjs'
 import { hardwareAssetApi } from '@/api/hardwareAsset'
@@ -244,6 +273,10 @@ const props = defineProps({
   isEdit: {
     type: Boolean,
     default: false
+  },
+  currentItem : {
+    type : Object ,
+    default: null 
   }
 })
 
@@ -262,7 +295,7 @@ const specifications = ref([{ key: '', value: '' }])
 const formData = reactive({
   name : '',
   asset_tag: '',
-  model: '',
+  software_type: '',
   asset_owner: '',
   project_source: '',
   purchase_date: '',
@@ -270,8 +303,13 @@ const formData = reactive({
   specification_parameter: '',
   serial_number: '',
   warranty_type: '',
-  warranty_date_range: null
+  warranty_date_range: null ,
+  vendor : '' ,
+  license_type : '' ,
+  license_key : '' ,
+  asset_status : ''
 })
+
 
 // 选项数据
 const projectSource = ref([
@@ -281,6 +319,11 @@ const projectSource = ref([
   { label: '其他', value: 'other' }
 ])
 
+// 状态数据
+const assetStatus = ref([
+  { label: '在用', value: 'in_use' },
+  { label: '停用', value: 'block_up' },
+])
  
  // 资产责任人选项
  const userOptions = ref([
@@ -378,6 +421,11 @@ const resetForm = () => {
   })
   specifications.value = [{ key: '', value: '' }]
   formRef.value?.resetFields()
+}
+
+// 编辑资产处理
+const handleEdit = () => {
+  Object.assign(formData, props.currentItem)
 }
 
 const loadFormData = () => {
@@ -564,12 +612,13 @@ watch(
     }
   }
 )
-
 // 生命周期
 onMounted(() => {
   loadUsers()
   loadSuppliers()
+  handleEdit()
 })
+
 </script>
 
 <style scoped>

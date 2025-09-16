@@ -59,7 +59,7 @@ class SoftwareAsset(models.Model):
     asset_owner = models.CharField(max_length=100, verbose_name="资产责任人", blank=True)
     asset_status = models.CharField(max_length=20, choices=ASSET_STATUS_CHOICES, default='in_use',
                                     verbose_name="资产状态")
-
+    specification_parameter = models.CharField(max_length=500, verbose_name="规格参数", null=True)
     # 保修信息
     warranty_type = models.CharField(max_length=20, choices=WARRANTY_TYPE_CHOICES, verbose_name="保修类型", null=True)
     warranty_status = models.CharField(max_length=20, choices=WARRANTY_STATUS_CHOICES, verbose_name="保修类型",

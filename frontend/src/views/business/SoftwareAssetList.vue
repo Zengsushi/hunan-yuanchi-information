@@ -33,6 +33,7 @@
       @import="showImportDialog"
       @searchInput="handleSearchInput"
       @editAsset="handleEdit"
+      @table-change="handleTableChange"
     />
 
     <!-- 软件监控操作组件 -->
@@ -45,7 +46,7 @@
     <!-- 新增/编辑对话框 -->
     <SoftwareAssetForm
       v-model:visible="formDialogVisible"
-      :form="currentItem"
+      :currentItem="currentItem"
       :is-edit="isEdit"
       @success="handleFormSuccess"
     />
@@ -203,7 +204,7 @@ const searchForm = reactive({
 // 分页
 const pagination = reactive({
   page: 1,
-  size: 20,
+  size: 10,
   total: 0
 })
 
@@ -213,6 +214,7 @@ const statistics = computed(() => {
   const total = assetStatusCount.value.use_count + assetStatusCount.value.block_up_count
   const active = assetStatusCount.value.use_count
   const block_up = assetStatusCount.value.block_up_count
+  console.log(total , active, block_up)
   return {
     total: pagination.total || 0,
     active,
@@ -559,7 +561,6 @@ const handleView = (record) => {
 
 // 软件资产编辑
 const handleEdit = (record) => {
-  console.log("资产编辑") 
   currentItem.value = { ...record }
   isEdit.value = true
   formDialogVisible.value = true
@@ -584,6 +585,35 @@ const handleDelete = (record) => {
     }
   })
 }
+
+// 处理分页
+const handleTableChange = async (paginationInfo, filters, sorter) => {
+  console.log('handleTableChange 被调用:', {
+    paginationInfo, 
+    当前分页状态: {
+      current: pagination.current,
+      pageSize: pagination.pageSize
+    }
+  });
+  
+  pagination.current = paginationInfo.current;
+  pagination.pageSize = paginationInfo.pageSize;
+  
+  console.log('更新后的分页状态:', {
+    current: pagination.current,
+    pageSize: pagination.pageSize
+  });
+  
+  // 更新 URL 参数
+  const currentUrl = new URL(window.location);
+  currentUrl.searchParams.set('page', pagination.current.toString());
+  currentUrl.searchParams.set('page_size', pagination.pageSize.toString());
+  window.history.replaceState({}, '', currentUrl.toString());
+  console.log('已更新 URL:', currentUrl.toString());
+  
+  await fetchData();
+};
+
 
 const handleLicense = (record) => {
   currentItem.value = record
